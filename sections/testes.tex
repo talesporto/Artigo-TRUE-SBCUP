@@ -1,0 +1,212 @@
+\section{Testes}
+
+Com intuito de identificar a acurácia e as limitações do Sistema TRUE perante
+seus requisitos foram realizados uma série de testes funcionais. Grande parte
+dos testes foram realizados no LAICO (LAboratório de Sistemas Integrados e
+COncorrentes),
+
+\begin{itemize} 
+	\item Rastreamento: testes funcionais realizados para avaliar a eficiência da
+	detecção de novos usuários no ambiente.
+	\item Localização: testes realizados para avaliar a precisão do sistema ao
+	estimar a posição dos usuários rastreados no ambiente. 
+	\item Reconhecimento: testes realizados para avaliar a acurácia na
+	identificação de usuários.
+\end{itemize} 
+	
+Além disso, com o objetivo de demonstrar a integração do Sistema TRUE com o
+middleware uOS foi desenvolvida uma pequena aplicação utilizando os serviços e
+os eventos providos pelo sistema.
+
+\subsection{Rastreamento}
+
+O rastreamento é fundamental para o funcionamento correto do Sistema TRUE uma
+vez que é responsável por rastrear os usuários no ambiente, determinar a sua
+localização física em relação ao sensor \textit{Kinect} e gerenciar suas
+identidades.
+
+Os primeiros testes realizados tiveram como objetivo verificar a eficiência da
+detecção de novos usuários no ambiente. Os testes foram feitos simulando a
+entrada de um usuário na cena e analisando o momento em que o mesmo era
+detectado. Em todos os testes o usuário era detectado antes mesmo de entrar na
+área de visão do sistema por completo.
+
+Também foram realizados testes com o objetivo de verificar a oclusão no
+rastreamento. Foi testado o caso em que um usuário oculta propositalmente outro
+já rastreado. Nesta situação, caso o usuário rastreado continuasse oculto, o sistema o
+determinava como perdido. Por outro lado, nos casos de oclusão parcial, o
+sistema se mostrou robusto.
+	
+Nos testes foi simulada também a situação de oclusão momentânea, ou seja, um
+usuário em movimento oculta outro por um curto período de tempo em razão da sua
+movimentação. Nestes casos, o sistema TRUE perde o usuário rastreado, mas
+rapidamente é capaz de detectá-lo novamente.
+	
+A oclusão era um problema esperado uma vez que o Sistema TRUE utiliza somente um
+sensor \textit{Kinect} como dispositivo de entrada.
+
+Durante os testes realizados com rastreamento foi observado alguns problemas
+quando o usuário rastreado interagia com objetos do ambiente ou com outros
+usuários. Na grande maioria das vezes em que o usuário interagiu com objetos, o
+Sistema TRUE considerou o objeto como sendo parte do usuário. Entretanto, esta
+situação não prejudicou a eficiência do sistema.
+
+Por outro lado, os problemas com interação entre usuários foram mais raros,
+porém tiveram impacto maior. Tais problemas consistem em ``interferências'' que
+ocorreram em algumas situações de contato entre dois ou mais usuários.
+
+Apesar dos problemas relatados, o rastreamento conseguiu, na maioria dos testes,
+atender às necessidades rastreando os diversos usuários no ambiente em suas
+atividades diárias.
+
+\subsection{Localização}
+
+O Sistema TRUE obtém a localização dos usuários no ambiente por meio de
+coordenadas dos mesmos em relação ao \textit{Kinect}. Para verificar a acurácia
+dessas coordenadas foram realizados alguns testes.
+
+As coordenadas (x, y, z) obtidas pelo sistema são coordenadas de um plano
+cartesiano de três dimensões em que o ponto (0, 0, 0) corresponde a posição do
+\textit{Kinect}. A coordenada no eixo z mostra o quanto o usuário está distante, em
+termos de profundidade, em relação ao sensor, a coordenada no eixo x mostra o
+quanto o usuário está a direita ou a esquerda do sensor e a coordenada no eixo y
+mostra o quanto o centro de massa geométrico do usuário está acima ou abaixo do
+sensor.
+
+Os testes foram realizados para as coordenada do eixo x e z pois o eixo y se
+refere a altura do centro geométrico do usuário rasteado e não é interessante
+para o contexto de localizam do usuário no ambiente.
+
+Para testar a precisão as coordenadas  do eixo z foi realizado o seguinte teste:
+um objeto (uma caixa de papelão) foi colocada em frente ao sensor a diferentes
+distâncias do mesmo (1000mm, 2000mm, 3000mm, 4000mm, 4057mm). Para distâncias
+acima de 4057mm não foram obtidos resultados pois essa é a distância máxima de
+funcionamento do sensor.
+
+Para cada distância, foram coletados 6 amostras informadas pelo sistema. Foi
+observado, a discrepância aumenta conforme o objeto se distância do sensor.
+Neste teste o menor erro obtido foi de 3,21mm e o maior de 111,75mm.
+
+Para testar a precisão das coordenadas foi realizado o seguinte teste: um objeto
+(uma caixa de papelão) foi colocada a uma distância fixa de 3000 milímetros do
+sensor e colocada em diferentes posições ao longo do eixo $\displaystyle x$ (0,
+$\displaystyle \pm330mm$, $\displaystyle \pm660mm$, $\displaystyle \pm990mm$).
+Para cada posição foram coletadas 6 amostras informadas pelo sistema. Foi
+observado que existe uma diferença constante de poucos centímetros ao longo de
+todo teste. É possível inferir então, que o Sistema TRUE consegue fazer
+estimativas das coordenadas no eixo $\displaystyle x$ com erro de poucos
+centímetros. Neste caso o menor e o maior erro obtido foi de 27,19mm e
+79,29mm respectivamente.
+
+Acredita-se que os erros apresentados não são significativos a ponto de
+comprometer o uso dos dados fornecidos.
+
+\subsection{Identificação}
+Para análise dos resultados foi utilizada como ferramenta uma matriz de confusão
+construída a partir dos dados coletados do sistema. Tal matriz contém em suas
+colunas os valores possíveis que se podem obter para cada usuário e as linhas os
+usuários que foram observados.
+
+% Os valores presentes na matriz mostram os resultados, em porcentagens, dos
+% testes de reconhecimento. Cada célula apresenta o percentual de vezes que o
+% resultado (coluna) ocorreu durante os testes com o indivíduo (linha) sendo
+% reconhecido. Desta forma, a matriz permite a fácil visualização da confiança
+% obtida no reconhecimento observando-se os valores obtidos na diagonal principal.
+% Ela representa a conjunção do valor esperado com o indivíduo testado.
+
+Sumarizando os resultados expressos na matriz apresentamos três taxas
+calculadas: 
+\begin{enumerate}
+	\item Verdadeiro Positivo: quando o sistema identifica o usuário de maneira
+correta. 
+	\item Verdadeiro Negativo: quando o sistema identifica o usuário de maneira
+errada. 
+	\item Falso Negativo: quando o sistema não identifica o usuário cadastrado.
+\end{enumerate}
+
+Os cenários de teste utilizados para se averiguar a precisão do reconhecimento
+facial consistiram de duas etapas. Na primeira etapa cada usuário foi cadastrado
+na base de dados utilizando estratégias distintas para cada cenário. A esta base
+de dados foram adicionadas os dados das 40 pessoas presentes no banco de faces
+da Universidade de Cambridge. Na segunda etapa cada usuário, individualmente,
+foi posicionado dentro do campo de visão do sensor onde foram coletados os
+resultados dos primeiros 20 valores retornados pelo sistema. Primeiramente foi
+construído um cenário de testes que não apresentou resultados satisfatórios, com
+isto foi construído um segundo cenário de teste com uma nova abordagem para a
+coleta de faces (1ª etapa).
+
+No primeiro conjunto de testes, os cadastros dos usuários foram feitos
+utilizando 10 imagens de faces de cada usuário: 6 imagens frontais da face, 2
+imagens da face ligeiramente rotacionada para direita e 2 imagens da face
+ligeiramente rotacionada para esquerda.  Os cadastros foram realizados com essa
+estratégia com o objetivo de diminuir o impacto das variações de poses e ângulo
+no reconhecimento facial. Os resultados obtidos dos processos de reconhecimento
+facial realizados para cada usuário são mostrados na matriz de confusão.
+
+Como previsto, foi possível observar na matriz que os valores mais
+significativos estão na diagonal principal. Alguns resultados obtidos foram satisfatórios com
+porcentagens maiores que 90\%. Por outro lado, foram obtidos alguns resultados
+com baixas porcentagens como 45\%. Estes últimos foram principalmente causados
+por problemas como pose e expressões faciais. A iluminação não foi um problema,
+pois no ambiente de teste não existe influência da iluminação externa e a
+interna é controlada.
+
+As taxas de Verdadeiro Positivo, Verdadeiro Negativo e Falso Negativo foram
+calculadas analisando os valores da matriz. Observa-se que a taxa de verdadeiro
+positivo (73,63\%) foi uma taxa baixa para um sistema de reconhecimento
+automático. Neste conjunto de testes, a taxa de verdadeiro negativo foi bem
+superior a taxa de falso negativo mostrando que a principal deficiência do
+reconhecimento facial consiste na confusão entre os usuários cadastrados no
+sistema.
+
+Os resultados deste primeiro cenário não se mostrou satisfatório. Sob a hipótese
+do resultado ter sido influenciado pela baixa quantidade de faces e poses,
+construiu-se um segundo cenário de testes. Neste a estratégia utilizada nos
+cadastros do usuários foi diferente. Os cadastros foram feitos utilizando 100
+imagens das faces de cada usuário em diferentes ângulos, posições e expressões
+faciais. No momento do cadastro, foi solicitado que os usuários movimentassem o
+rosto levemente para cima, para baixo, para esquerda e para direita de maneira
+aleatória e com diferentes expressões faciais.
+
+Houve um aumento na taxa de Verdadeiro Positivo de 73,63\% para 82,5\% e redução
+significativa na taxa de Verdadeiro Negativo de 17,27\% para 6,0\%, mostrando
+que os casos de confusões entre os usuários foram mais raros. A melhora obtida
+comprova a hipótese que um número maior de poses e faces aprimorou a capacidade
+do sistema de reconhecer seus usuários. Este acréscimo de informações torna os
+resultados mais robustos devido a inclusão de informações de mais cenários dos
+usuários no sistema.
+
+\subsection{Integração}
+
+Com intuito de exemplificar a utilização do \textit{UserDriver} e testar a
+integração do Sistema TRUE com o middleware \textit{uOS} foi desenvolvido uma
+aplicação para o middleware chamada \textit{UserApp}. Esta aplicação registra um
+\textit{listener} para ``escutar'' os eventos do \textit{UserDriver} chamado
+\textit{UserListener}.
+
+Quando o \textit{UserListener} é inicializado ele obtém acesso ao Twitter e se
+registra para escutar os eventos gerados pelo \textit{UserDriver}. Para cada
+evento obtido, ele envia mensagens pelo Twitter para os usuários no ambiente.
+Para eventos de ``novo usuário detectado'' e ``usuário perdido'', ele envia
+mensagens de boas vindas e de despedidas respectivamente.  O
+\textit{UserDriver} também gera eventos de atualização dos dados dos usuários.
+Quando estes eventos são gerados, o \textit{UserListener} verifica se houve
+atualização na identidade do usuário e se o mesmo está a mais de uma hora no
+mesmo lugar. Caso esteja, ele envia mensagens aos usuários informando estes
+acontecimentos.
+
+Testes funcionais foram feitos com a aplicação mostrando que o \textit{driver}
+consegue obter os dados íntegros do Sistema TRUE e gerar os eventos de maneira
+praticamente instantânea. A Figura mostra as mensagens geradas pela aplicação em
+um teste funcional, onde Danilo, um usuário cadastrado, entra no ambiente senta
+em uma mesa com seu notebook permanecendo no mesmo lugar por mais de uma hora, e
+logo depois deixa o ambiente.
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[scale=0.6]{img/tweets.png}
+	\end{center}
+	\caption{Exemplo das mensagens enviadas pelo Twitter aos usuários no ambiente.}
+	\label{fig:tweets}
+\end{figure}
+

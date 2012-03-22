@@ -1,0 +1,3 @@
+pdflatex -output-directory ./bin curriculo.tex 
+pdflatex -output-directory ./bin curriculo.tex 
+gnome-open bin/curriculo.pdf

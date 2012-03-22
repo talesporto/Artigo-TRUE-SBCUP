@@ -1,0 +1,329 @@
+\section{Sistema TRUE}
+
+O Sistema TRUE é um sistema aberto de rastreamento, localização e identificação
+de pessoas em ambientes inteligentes gerenciados pelo middleware \textit{uOS}.
+
+É um sistema monomodal implementado em C++ que utiliza somente dados visuais,
+como imagens de cor e profundidade. As imagens de profundidade são utilizadas
+no rastreamento e localização dos usuários no ambiente, enquanto que as imagens
+de cor são utilizadas no reconhecimento facial e no cadastro dos usuários. Para
+se obter esses dados ele utiliza o sensor \textit{Kinect} da Microsoft como
+dispositivo de entrada.
+
+O Sistema TRUE é dividido em quatro módulos principais:
+\begin{itemize}
+	\item Módulo de Rastreamento: responsável pelo rastreamento e localização dos
+	usuários no ambiente. 
+	\item Módulo de Reconhecimento: responsável por identificar os usuários
+	rastreados.
+	\item Módulo de Registro: responsável pelo cadastro de novos usuários e treino
+	do sistema. 
+	\item Módulo de Integração: responsável pela integração e comunicação do
+	sistema com o Middleware \textit{uOS}.
+\end{itemize}
+
+Basicamente, o Módulo de Rastreamento obtém o dados do sensor \textit{Kinect}
+que são utilizados nas tarefas de rastreamento e localização de cada usuário no
+ambiente. Quando necessário ele requisita ao Módulo de Reconhecimento a
+identificação de algum usuário repassando imagens do mesmo. Por sua vez, o
+Módulo de Reconhecimento acessa o banco de faces, contendo as faces das pessoas
+cadastradas no sistema, e identifica o usuário mais parecido retornando seu
+nome ao Módulo de Rastreamento. Este último, repassa as informações de cada
+usuário ao Middleware \textit{uOS} através do Módulo de Integração. Quando for
+necessário cadastrar um novo usuário no Sistema TRUE, o Middleware acessa o
+Módulo de Registro, também através do Módulo de Integração, que insere as
+imagens da nova pessoa na base de faces e retreina o sistema.
+	
+\subsection{Middleware \textit{uOS}}
+O Middleware \textit{uOS} possui foco na adaptabilidade de serviços em um ambiente de
+computação ubíqua, de modo que os serviços dos dispositivos presentes no
+ambiente possam ser oferecidos e compartilhados.
+
+O \textit{uOS} é uma implementação de um middleware para auxílio de aplicações
+em ambientes de computação ubíqua, cuja proposta é compatível com os conceitos
+apresentados pela DSOA (\textit{Device Service Oriented Architecture}).
+
+O \textit{uOS} possui três camadas:
+
+\begin{enumerate}
+	\item Camada de Rede: responsável por gerenciar as interfaces de rede do
+	dispositivo;
+	\item Camada de Conectividade: responsável por gerenciar conexões entre
+	dispositivo que se comunicam por diferentes tecnologias, como Bluetooth e Ethernet;
+	\item Camada de Adaptabilidade: responsável por gerenciar os serviços
+	disponíveis e o acesso aos mesmos.
+\end{enumerate}
+
+A integração do Sistema TRUE com o middleware \textit{uOS} foi realizada na
+Camada de Adaptabilidade através da implementação de um driver de ``usuário''. Este
+driver se comunica com o Sistema TRUE disponibilizando serviços as aplicações para que
+as mesmas possam trocar informações. Esta integração será apresentada em
+detalhes mais a frente.
+
+\subsection{Módulo de Reconhecimento}
+O Módulo de Reconhecimento é responsável pela identificação dos usuários no
+ambiente utilizando a face como característica biométrica. A face foi escolhida
+por permitir um reconhecimento não intrusivo.
+
+O reconhecimento facial é feito a partir de imagens de usuários que são
+repassadas pelo Módulo de Rastreamento. Estas imagens são compostas somente
+pela região em que o usuário se encontra.
+
+Basicamente o reconhecimento facial possui as seguintes etapas:
+
+\begin{enumerate}
+	\item Obtenção da imagem de entrada composta somente pelo usuário cujo
+	 reconhecimento foi requisitado. 
+	\item Pré-processamento da imagem, ou seja, conversão da imagem em escala de
+	cinza.
+	\item  Detecção facial na imagem. Caso nenhuma face seja encontrada, retorna
+	 ``vazio''. Observa-se que no máximo uma face pode ser encontrada nesta
+	 imagem.
+	\item  Processamento da imagem, ou seja, uma nova imagem é criada recortando a
+	região da face encontrada. A imagem é, então, redimensionada e equalizada criando assim
+	um padrão de tamanho, brilho e contraste aumentando a acurácia do reconhecimento.
+	\item  Reconhecimento facial com a técnica Eigenfaces. 
+	\item  Retorno do nome do usuário com a face ``mais parecida'' e a confiança do
+	 reconhecimento.
+\end{enumerate}
+
+
+
+A detecção facial foi desenvolvida utilizando o método \textit{Viola-Jones}.
+O \textit{Viola-Jones} é implementado pela biblioteca \textit{OpenCV}
+(\textit{Open Source Computer Vision}). Basicamente, o processo de detecção facial procura por
+uma face em uma imagem pré-processada. Para realizar detecção facial utilizando o método
+\textit{Viola-Jones} é necessário a utilização de um classificador em cascata. O
+Sistema TRUE utiliza um classificador treinado para detectar faces frontais em imagens.
+As etapas da detecção são:
+
+\begin{enumerate}
+	\item Leitura de um classificador treinado para detectar faces em uma imagem.
+	\item Obtenção da imagem de entrada pré-processada.
+	\item Detecção da face na imagem utilizando o classificador.
+	\item Retorno da região da face detectada ou retorno ``vazio'' caso nenhuma
+	face tenha sido encontrada. Observa-se que existe no máximo uma face na imagem,
+	pois contém somente um usuário.
+\end{enumerate}
+ 
+Foi desenvolvida utilizando a técnica \textit{Eigenfaces}. Consiste em uma
+técnica bastante satisfatória quando utilizada sobre uma base de faces relativamente
+grande, permitindo ao sistema inferir, das imagens das faces suas principais
+características e, partindo delas, realizar o reconhecimento facial utilizando
+um número reduzido de cálculos, permitindo, assim, um reconhecimento em tempo
+real. A base de dados utilizada no Sistema TRUE é formada por imagens no formato
+PGM (\textit{Portable Gray Map}) com tamanho de 92x112 pixels e em escala de cinza.
+
+A base é composta por um banco de faces de alunos voluntários de Ciência da
+Computação da Universidade de Brasília. Um banco de imagens de faces da
+Universidade de Cambridge: formado por imagens de faces de 40 pessoas
+diferentes. Para cada pessoa, existem 10 diferentes imagens obtidas em
+diferentes momentos, com diferentes condições de iluminação, diferentes
+expressões faciais (olhos abertos e fechados, sorrindo e não sorrindo, entre
+outros) e diferentes detalhes faciais (com e sem óculos).
+
+O reconhecimento facial inicia-se projetando a imagem no subespaço através do
+método PCA que reduz sua dimensionalidade. Então, calcula-se a distância da
+imagem projetada a cada um dos \textit{eigenfaces} obtidos na etapa de
+treinamento obtendo uma lista de distâncias. Esta lista de distâncias é
+comparada com a lista de distâncias de cada usuário, também obtidas na etapa
+de treinamento, obtendo o usuário cuja lista de distâncias é a mais similar.
+ 
+Uma das etapas intermediárias consiste no cálculo da distância entre a imagem
+de entrada e os \textit{Eigenfaces}.
+		
+Inicialmente, o cálculo desta distância era feito utilizando distância
+Euclidiana. Contudo, testes foram realizados com alguns usuários, em que o
+sistema realizava 20 tentativas de reconhecimento de usuários, e os resultados
+não foram satisfatórios. Portanto, os mesmos testes foram realizados utilizando
+a distância Mahalanobis. Ainda assim, os resultados não foram satisfatórios.
+Então, os mesmos testes foram feitos utilizando as duas distâncias de maneira
+conjunta: uma imagem só é tida como reconhecida quando o resultado das duas
+distâncias apontarem para a mesma identidade. Com isso, houve uma melhora
+significativa dos resultados.
+	
+% Para exemplificar os resultados deste teste a Tabela \ref{tab:distancias}
+% mostra, para o usuário Danilo, a porcentagem de acerto e confusão da distância Euclidiana, da
+% distância Mahalanobis e de ambas quando usadas de maneira conjunta. Observa-se
+% que houve uma melhora significativa ao se utilizar ambas as distâncias (acerto
+% de 75\%) comparado com a distância Euclidiana (acerto de 45\%) e distância
+% Mahalanobis (acerto de 40\%).
+% 
+% \begin{table}[h]
+% 	\begin{center}
+% 		\caption{Resultados do teste de reconhecimento feito com o usuário Danilo
+% 		utilizando as diferentes distâncias.}
+% 		\label{tab:distancias}
+% 		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+% 			\hline &\bf \begin{sideways}Danilo\end{sideways} & \bf \begin{sideways}Pedro\end{sideways} & \bf \begin{sideways}Ana\end{sideways} & \bf \begin{sideways}Pessoa1\end{sideways} & \bf \begin{sideways}Pessoa2\end{sideways} & \bf \begin{sideways}Pessoa3\end{sideways} & \bf \begin{sideways}Desconhecido\end{sideways}\\
+% 			\hline \bf Euclidiana & 45\% & 40\% & & 5\% & 5\% & 5\% &\\
+% 			\hline \bf Mahalanobis & 40\% & & 15\% & 35\% & 10\% & &\\
+% 			\hline \bf Ambas Distâncias & 75\% & & & & & & 25\%\\
+% 			\hline
+% 		\end{tabular}
+% 	\end{center}
+% \end{table}
+
+\subsection{Módulo de Rastreamento}
+
+O Módulo de Rastreamento é responsável por rastrear os usuários no ambiente,
+determinar a sua localização física em relação ao sensor \textit{Kinect} e
+gerenciar suas identidades.
+
+Para realizar o rastreamento e localização dos usuários é utilizada a
+biblioteca \textit{OpenNI} (\textit{Open Natural Interaction}). Trata-se de um
+\textit{framework} que define \textit{APIs} para o desenvolvimento de aplicações
+de interação natural.
+
+Utilizando as imagens de profundidade, a detecção e o rastreamento dos
+usuários são feitos utilizando subtração de fundo. A representação das pessoas
+detectadas e rastreadas são feitas utilizando suas silhuetas.
+
+Utilizando imagens de profundidade é possível calcular as coordenas (x,y,z) de
+um plano cartesiano de três dimensões em que o ponto (0,0,0) corresponde a
+posição do \textit{Kinect}. Dessa forma, a posição de um usuário em relação ao
+sensor é estimada utilizando as coordenadas referente ao pixel que representa seu centro
+de massa geométrico. Sendo assim, ao fixar a posição do \textit{Kinect} no
+ambiente, é possível estimar a localização de qualquer usuário rastreado em tempo real.
+
+O processo de rastreamento começa inicializando o dispositivo de entrada, no
+caso o sensor \textit{Kinect}, registrando as ações a serem tomadas quando
+eventos em relação aos usuários ocorram, como, por exemplo, evento de novo
+usuário detectado ou usuário perdido. Obtém-se então uma imagem de fundo da cena
+que será utilizada no processo de subtração de fundo. Para cada imagem obtida da
+cena, o processo de subtração de fundo é realizado atualizando os parâmetros de
+cada usuário, como sua posição na imagem e sua posição em relação ao sensor.
+
+
+
+
+O Módulo de Rastreamento detém as informações sobre todos os usuários
+rastreados no ambiente e é responsável por requisitar identificação ao Módulo
+de Reconhecimento. Isto acontece sempre que um novo usuário for detectado ou
+quando for necessário reconhecer novamente um usuário já rastreado.
+
+Quando um novo usuário for detectado, o Módulo de Rastreamento obtém 20 imagens
+de cor sucessivas deste usuário. Para cada imagem, ele cria uma nova imagem
+composta somente pela região em que este usuário se encontra e a envia ao
+Módulo de Reconhecimento requisitando identificação ao mesmo. O Módulo de
+Reconhecimento, por sua vez, realiza o reconhecimento facial e retorna ao
+Módulo de Rastreamento o nome do usuário e a confiança obtida.
+
+A cada 0.5 segundos, o Módulo de Reconhecimento verifica se chegou algum
+resultado de identificação. Caso tenha chegado, o Módulo de Rastreamento computa
+o resultado e decide qual identidade será atribuída ao respectivo usuário.
+
+Ao invés de realizar o reconhecimento somente quando novos usuários são
+detectados, com o objetivo de melhorar a confiança do reconhecimento, o Sistema
+TRUE realiza continuamente a identificação dos usuários já reconhecidos. Essas
+tentativas de reconhecer novamente os usuários ocorrerão a cada 5 segundos
+seguindo as mesmas etapas de quando um novo usuário for detectado. A única
+etapa que se difere é a primeira, ou seja, ao invés de obter várias imagens de
+um mesmo usuário, é obtida uma imagem de cada usuário rastreado e a mesma é
+enviada ao Módulo de Reconhecimento.
+
+Ao obter um resultado de reconhecimento para determinado usuário, o Módulo de
+Rastreamento deve computar qual identidade será atribuída ao mesmo. Para isso,
+este módulo mantém para cada usuário o número total de vezes que este já foi
+reconhecido e os diferentes nomes obtidos pelo Módulo de Reconhecimento bem
+como a confiança média para cada nome e o número de vezes que cada nome foi
+atribuído àquele usuário.
+ 
+Com todos esses dados, a identidade do usuário é definida por meio da
+Fórmula~\ref{eq:media_ponderada} que nada mais é do que a média ponderada entre
+as confianças de cada nome, onde os pesos utilizados são compostos pelo número de vezes que o
+respectivo nome foi atribuído ao usuário.
+
+\begin{equation}
+	\label{eq:media_ponderada}
+	M_p = \frac{N_1 * C_1 + N_2 * C_2 + ... + N_n * C_n}{N_1 + N_2 + ... + N_n}
+\end{equation}
+
+% A Tabela mostra os dados mantidos para o usuário João pelo Módulo de
+% Rastreamento, em que ``João'', ``Danilo'' e ``Tales'' são as identidades que já
+% foram obtidas ao se tentar reconhecer o João. A segunda coluna desta tabela mostra a
+% confiança média do reconhecimento para cada nome e a última mostra o número de
+% vezes que cada nome foi atribuído a João.
+% 
+% Para decidir qual identidade será atribuída ao usuário João primeiramente
+% calcula-se a média ponderada. Então, a identidade atribuída será aquela cuja
+% confiança média mais se aproxima da média ponderada. Neste caso, a identidade
+% atribuída a João será ``João''.
+
+\subsection{Módulo de Registro}
+
+O Módulo de Registro é responsável por cadastrar novos usuários no sistema e
+treiná-lo para também reconhecer esse novo usuário. Este consiste das seguintes
+etapas:
+\begin{enumerate}
+	\item Obtenção das imagens do novo usuário;
+	\item Processamento das imagens, isto é, as imagens são convertidas em escala
+	 de cinza, novas imagens são criadas recortando a região da face encontrada.
+	 Em seguida, as imagens são redimensionadas e equalizadas criando assim
+	 padrões de tamanho, brilho e contraste;
+	\item Armazenamento das imagens;
+	\item Treinamento do sistema para reconhecer esse usuário.
+\end{enumerate}
+
+A última etapa do módulo de registro consiste no treinamento do sistema. O
+treinamento inicia-se liberando os atuais dados de treinamento. Então, um vetor
+de imagens é obtido lendo todas as imagens contidas no banco de faces. Através
+deste vetor, obtém-se a \textit{eigenface} média, os \textit{eigenfaces} e os
+\textit{eigenvalues}. Para cada usuário cadastrado no Sistema TRUE, suas imagens
+são projetadas no subespaço através do método PCA  que reduz suas
+dimensionalidades, e são calculadas suas distâncias em relação aos eigenfaces
+obtendo um vetor de distâncias. Os \textit{eigenfaces}, os \textit{eigenvalues},
+a \textit{eigenface} média e os vetores de distâncias são armazenados e podem
+ser utilizados pelo Módulo de Reconhecimento.
+
+Após o treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja
+feito utilizando as novas imagens e informações obtidas com o treinamento.
+
+\subsection{Modulo de Integração}
+
+O Modulo de Integração é responsável pela integração do Sistema TRUE com o
+Middleware \textit{uOS}. Através desta integração, os dados providos pelo Sistema TRUE são
+disponibilizados ao ambiente gerenciado pelo middleware \textit{uOS} por meio de
+serviços.
+
+Para integrá-los foi desenvolvido um driver para o Middleware se comunicar com
+o Sistema TRUE. Este driver foi nomeado de \textit{UserDriver}.
+
+Os métodos do \textit{UserDriver} podem ser divididos basicamente em três
+grupos:
+\begin{itemize}
+	\item Métodos de Inicialização: métodos responsáveis pela inicialização do
+		Sistema TRUE e pelo registro dos serviços que o \textit{driver} possui e os
+		eventos que pode gerar;
+ 	\item Métodos Nativos: métodos declarados no \textit{driver} que permitem
+ 	acessar alguns métodos implementados pelo Sistema TRUE. Tais métodos permitem que o
+ 		\textit{UserDriver} tenha controle sobre o sistema, podendo iniciá-lo, encerrá-lo,
+ 		retreiná-lo e, até mesmo, cadastrar e remover novos usuários a qualquer
+ 		momento;
+	\item Serviços e Eventos: são os métodos que implementam os serviços que o
+		\textit{UserDriver} disponibiliza às aplicações presentes no ambiente e os eventos que
+		pode gerar.
+\end{itemize}
+
+O \textit{UserDriver} disponibiliza às aplicações registradas no middleware os seguintes serviços:
+
+\begin{itemize}
+	\item Consultas as informações dos usuários no ambiente: através dessas
+		consultas, as aplicações tem acesso aos nomes, emails, posições correntes e
+		confiança do reconhecimento de todos os usuários presentes no ambiente; 
+	\item Cadastro: as aplicações podem cadastrar novos usuários fornecendo ao
+		\textit{UserDriver} o nome, o email e as imagens do novo usuário;
+	\item Treino do sistema: após cadastrar novos usuários as aplicações podem
+		retreinar o sistema para poder reconhecer o novo usuário cadastrado;
+	\item Remoção: as aplicações podem remover usuários cadastrados fornecendo o email do usuário.
+\end{itemize}
+
+Além dos serviços, o \textit{UserDriver} gera os seguintes eventos:
+\begin{itemize}	 
+	\item Novo Usuário: evento gerado assim que um novo usuário foi detectado pelo
+	 Sistema TRUE. 
+	\item Usuário Perdido: evento gerado assim que um usuário deixou de ser
+	 rastreado pelo Sistema TRUE. 
+	\item Atualização dos dados do usuário: evento gerado a cada cinco segundos
+	 atualizando os dados de todos os usuários rastreados.
+\end{itemize}

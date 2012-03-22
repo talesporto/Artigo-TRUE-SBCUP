@@ -1,0 +1,100 @@
+\begin{thebibliography}{}
+
+\bibitem[Bradski 2000]{opencv_library}
+Bradski, G. (2000).
+\newblock {The OpenCV Library}.
+\newblock {\em Dr. Dobb's Journal of Software Tools}.
+
+\bibitem[Buzeto 2010]{fabriciobuzzeto}
+Buzeto, F.~N. (2010).
+\newblock Um conjunto de solu{\c c}{\~o}es para a constru{\c c}{\~a}o de
+  aplicativos de computa{\c c}{\~a}o ub{\'\i}qua.
+\newblock Master's thesis, Departamento de Ci{\^e}ncia da Computa{\c c}{\~a}o,
+  Universidade de Bras{\'\i}lia,
+  http://monografias.cic.unb.br/dspace/handle/123456789/257.
+
+\bibitem[Hewitt 2007]{hewitt}
+Hewitt, R. (2007).
+\newblock Face recognition with eigenface.
+\newblock {\em SERVO Magazine}.
+
+\bibitem[Jain et~al. 1995]{jain}
+Jain, R., Kasturi, R., and Schunck, B.~G. (1995).
+\newblock {\em Machine vision}.
+\newblock McGraw-Hill, Inc., New York, NY, USA.
+
+\bibitem[Kinect 2012]{kinect_microsoft}
+Kinect (2012).
+\newblock Kinect.
+\newblock \url{http://www.xbox.com/en-US/kinect}.
+
+\bibitem[Ma 2007]{edsonma}
+Ma, E. L.~H. (2007).
+\newblock Avalia{\c c}{\~a}o de caracter{\'\i}sticas haar em um modelo de
+  detec{\c c}{\~a}o de face.
+\newblock {\em Universidade de Bras{\'\i}lia, Instituto de Ci{\^e}ncias Exatas,
+  Departamento de Ci{\^e}ncia da Computa{\c c}{\~a}o}.
+
+\bibitem[P.~N.~Belhumeur 1996]{belhumeur}
+P.~N.~Belhumeur, J. P.~Hespanha, D. J.~K. (1996).
+\newblock Eigenfaces vs. fisherfaces: Recognition using class specific linear
+  projection.
+\newblock {\em European Conference on Computer Vision}.
+
+\bibitem[P.~Viola 2001]{violajones}
+P.~Viola, M.~J. (2001).
+\newblock Robust real-time object detection.
+\newblock {\em Second International Workshop on Statistical and Computational
+  Theories of Vision -- Modeling, Learning, Computing, and Sampling}.
+
+\bibitem[Rougier et~al. 2011]{fall-detection}
+Rougier, C., Auvinet, E., Rousseau, J., Mignotte, M., and Meunier, J. (2011).
+\newblock Fall detection from depth map video sequences.
+\newblock In Abdulrazak, B., Giroux, S., Bouchard, B., Pigot, H., and Mokhtari,
+  M., editors, {\em ICOST}, volume 6719 of {\em Lecture Notes in Computer
+  Science}, pages 121--128. Springer.
+
+\bibitem[Salah et~al. 2008]{salah}
+Salah, A.~A., Morros, R., Luque, J., Segura, C., Hernando, J., Ambekar, O.,
+  Schouten, B., and Pauwels, E. (2008).
+\newblock Multimodal identification and localization of users in a smart
+  environment.
+\newblock {\em Journal on Multimodal User Interfaces}, 2(2):75--91.
+
+\bibitem[Stiefelhagen et~al. 2008]{chil}
+Stiefelhagen, R., Bernardin, K., Ekenel, H.~K., and Voit, M. (2008).
+\newblock Tracking identities and attention in smart environments -
+  contributions and progress in the chil project.
+\newblock In {\em FG}, pages 1--8.
+
+\bibitem[Trivedi et~al. 2005]{trivedi}
+Trivedi, M.~M., Huang, K.~S., and Mikic, I. (2005).
+\newblock Dynamic context capture and distributed video arrays for intelligent
+  spaces.
+\newblock {\em Ieee Transactions On Systems, Man, and Cybernetics---part A:
+  Systems and Humans}, 35(1):145 -- 163.
+
+\bibitem[Waibel et~al. 2010]{computerschil}
+Waibel, A., Stiefelhagen, R., Carlson, R., Casas, J.~R., Kleindienst, J.,
+  Lamel, L., Lanz, O., Mostefa, D., Omologo, M., Pianesi, F., Polymenakos, L.,
+  Potamianos, G., Soldatos, J., Sutschet, G., and Terken, J. (2010).
+\newblock Computers in the human interaction loop.
+\newblock In {\em Handbook of Ambient Intelligence and Smart Environments},
+  pages 1071--1116.
+
+\bibitem[Weiser 1991]{weiser1}
+Weiser, M. (1991).
+\newblock The computer for the 21st century.
+\newblock {\em Scientific American}.
+
+\bibitem[Weiser 1993]{weiser2}
+Weiser, M. (1993).
+\newblock The world is not a desktop.
+\newblock {\em ACM Interactions}, 1.
+
+\bibitem[Yilmaz et~al. 2006]{yilmaz}
+Yilmaz, A., Javed, O., and Shah, M. (2006).
+\newblock {Object tracking: A survey}.
+\newblock {\em ACM Comput. Surv.}, 38(4):13+.
+
+\end{thebibliography}

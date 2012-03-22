@@ -1,0 +1,123 @@
+\section{Fundamentação Teórica}
+
+%``Introduzir este capítulo''
+
+O rastreamento pode ser definido como o problema de estimar a trajetória de uma
+entidade (objeto ou pessoa) em um plano de imagem à medida em que se move na
+cena. Em um ambiente inteligente, o rastreamento de pessoas é uma das
+principais ferramentas para detectar novos usuários e serve como base para
+que novas informações possam ser coletadas~\cite{yilmaz}.
+
+Basicamente, o processo de rastreamento pode ser dividido em duas etapas:
+\begin{itemize}
+	\item Detecção do objeto; 
+	\item Rastreamento do objeto detectado.
+\end{itemize}
+
+Antes de falar como são feitos a detecção e o rastreamento de entidades, vamos
+mostrar como as entidades rastreadas são representadas. As entidades rastreadas
+devem ser representadas de alguma maneira. Geralmente, as representações são
+baseados em suas formas, existindo uma forte relação entre a representação e o
+algoritmo de rastreamento escolhido. Dentre as representações conhecidas se
+destacam a por pontos, por formas geométricas primitivas, por silhueta e
+contorno, por modelos de formas articuladas e por modelos de esqueletos.
+A representação por silhueta e contorno é mais indicada para rastrear entidades
+complexas de forma não rígida. Ela é popular devido à sua simplicidade e é mais
+utilizada no rastreamento de pessoas.
+
+Todo método de rastreamento requer um mecanismo de detecção de entidades que
+pode ser realizada a cada \textit{frame} (quadro) obtido ou na primeira vez que
+a entidade a ser rastreada entra no campo de visão. Dentre os métodos de
+rastreamento se destacam o detector de pontos, a subtração de fundo e
+a segmentação. A subtração de fundo é um método popular para segmentação de
+movimento, especialmente nas situações em que o plano de fundo é relativamente
+estático. Ele detecta as regiões de movimento na imagem obtendo a diferença
+pixel a pixel entre o quadro corrente e o quadro referente ao plano de fundo.
+
+Os métodos de rastreamento de entidades mais utilizados atualmente são o
+rastreamento de pontos, o rastreamento de núcleo e o rastreamento de silhuetas.
+O rastreamento de silhuetas é feito estimando a região da entidade a cada
+quadro a partir das silhuetas geradas nos quadros anteriores. Dado os modelos
+de entidades, silhuetas são rastreadas por qualquer forma de correspondência ou
+evolução de contorno.
+
+As informações provenientes do rastreamento de uma entidade servem como base
+para que a localização da mesma possa ser obtida. Com essas informações é
+possível determinar os pontos da imagem que representam a entidade e calcular
+as distâncias dos mesmos em relação a câmera utilizada na captura das imagens.
+
+Imagens de profundidade são imagens cujo valor em cada pixel é uma função da
+distância do ponto, correspondente na cena, do sensor. Estas imagens podem ser
+adquiridas diretamente utilizando sensores específicos. Imagens de profundidade
+são úteis devido a sua especificação explícita de valores de profundidade.
+
+Alguns dos métodos para se obter imagens de profundidade mais conhecidos são o
+tempo de vôo (TOF - Time of flight)~\cite{jain, fall-detection} e a luz
+estruturada~\cite{fall-detection}. Luz estruturada consiste em uma imagem de
+profundidade. Uma imagem de profundidade não pode ser obtida utilizando somente um sensor de vídeo. Porém,
+adicionando uma textura artificial na cena, uma imagem de profundidade pode ser
+recuperada. Esse princípio consiste na projeção de pontos de luz infravermelhos
+na cena que são recuperados por uma câmera infravermelha que lê a textura.
+Trata-se de um método mais acessível que o TOF, porém é pouco eficiente para
+estimar a distância dos pontos nas bordas dos objetos e em posições muito longe
+do sensor.
+
+Hoje em dia, várias técnicas de reconhecimento biométrico por meio da face,
+íris, voz, entre outras, vêm sendo estudadas e utilizadas em sistemas de
+reconhecimento automático. Dentre estas, o reconhecimento por meio da face se
+destaca pois sua aquisição é realizada de maneira fácil e não intrusiva,
+tornando-a ideal para ser utilizada em um ambiente inteligente.
+
+Do ponto de vista geral, o reconhecimento facial continua sendo um desafio por
+causa de várias dificuldades como iluminação, ângulos e poses, expressões,
+maquiagem e extração da face do contexto ou do fundo. Basicamente, o processo de
+reconhecimento facial pode ser divido em duas tarefas principais, a detecção de
+faces em imagens e o reconhecimento das faces encontradas.
+
+A detecção de faces é definida como o processo que determina a existência ou
+não de faces em uma imagem e uma vez encontrada alguma face, sua localização
+deve ser apontada através de um enquadramento ou através de suas coordenadas
+dentro da imagem. Atualmente, já existem diferentes métodos/técnicas de detecção
+de faces.
+
+O método é um dos mais utilizados e possui uma alta acurácia permitindo a
+detecção de faces em tempo real. Este método pode ser utilizado para construir
+uma abordagem de detecção facial rápida e eficaz utilizando apenas imagens em
+tons de cinza distinguindo-se dos outros métodos. Apesar da simplicidade obtém
+altas taxas de detecção. O método é implementado pela biblioteca
+OpenCV~\cite{opencv_library} e é amplamente utilizado.
+
+O \textit{Viola-Jones}~\cite{edsonma, violajones} utiliza um método de
+aprendizagem de máquina chamado AdaBoost. Este combina vários classificadores
+``fracos'' para criar um classificador ``forte''. Um classificador fraco é
+aquele que só obtém a resposta correta um pouco mais frequente que um ``palpite
+aleatório''. A combinação desses classificadores ``fracos'', onde cada um
+``empurra'' a resposta final um pouco na direção certa, pode ser considerado
+como um classificador ``forte''. O método \textit{Viola-Jones} combina uma série
+de classificadores AdaBoost na forma de uma cadeia de filtros, que recebe o nome
+de ``Classificadores em Cascata''. Cada filtro em si é um classificador AdaBoost
+com um número relativamente pequeno de classificadores ``fracos''.
+
+Durante a utilização, se alguma região de uma imagem falhar em passar em um
+desses filtros, esta é imediatamente classificada como ``não face''. Quando uma
+região de uma imagem passa por um filtro, ela vai para o próximo filtro na
+cadeia. As regiões das imagens que passarem por todos os filtros na cadeia são
+classificadas como ``faces''.
+
+Na etapa de reconhecimento, as faces detectadas, serão comparadas com um banco
+de dados de faces conhecidas. O \textit{Eigenfaces}~\cite{hewitt} trata-se de
+uma técnica bastante satisfatória quando utilizada sobre uma base de dados (faces) relativamente
+grande. Ela permite ao sistema inferir das imagens suas principais
+características e, partindo delas, realizar o reconhecimento das imagens
+utilizando um número bastante reduzido de cálculos.
+
+Esta técnica aplica o PCA (\textit{Principal Component
+Analisys})~\cite{belhumeur} nas imagens do banco de faces gerando uma lista de
+\textit{eigenfaces}. A partir desta lista é calculada uma \textit{eigenface}
+média. Cada \textit{eigenface} possui um valor associado (\textit{eigenvalue})
+que representa a distancia da \textit{eigenface} media da respectiva
+\textit{eigenface}.
+
+% se necessário da para detalhar mais o eigenfaces 
+
+% ``Finalizar este capítulo''

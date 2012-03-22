@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.1)  21 MAR 2012 22:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.1)  21 MAR 2012 22:27
 entering extended mode
  Source specials enabled.
  %&-line parsing enabled.
@@ -210,41 +210,28 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
  (./sections/introducao.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+) (./sections/fundamentacao_teorica.tex
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 13.
 
-Underfull \hbox (badness 1527) in paragraph at lines 11--20
-[][]\OT1/ptm/m/n/12 Ambientes s[]ao com-pos-tos por usu[]arios, dis-po-si-ti-vo
-s e aplica[][]oes. Es-sas
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 28.
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 2134) in paragraph at lines 71--75
-[]\OT1/ptm/m/n/12 Agora ser[]ao mos-tra-dos al-guns pro-je-tos que fo-cam ras-t
-re-a-mento, identifica[][]ao e
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2])
-(./sections/fundamentacao_teorica.tex [3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \hbox (badness 10000) in paragraph at lines 114--120
 [][]\OT1/ptm/m/n/12 Esta t[]ecnica aplica o PCA (\OT1/ptm/m/it/12 Prin-ci-pal C
 om-po-nent Ana-
  []
 
-) (./sections/sistema_true.tex [5] [6] [7] [8] [9]) (./sections/testes.tex
-[10] [11] [12] [13] <img/tweets.png, id=52, 544.0325pt x 246.9225pt>
+) (./sections/projetos_correlatos.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3])
+(./sections/sistema_true.tex [4] [5] [6] [7] [8]) (./sections/testes.tex
+[9] [10] [11] [12] <img/tweets.png, id=48, 544.0325pt x 246.9225pt>
 File: img/tweets.png Graphic file (type png)
 
 <use img/tweets.png>
@@ -256,17 +243,17 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 209.
 )
-(./sections/conclusao.tex [14 <./img/tweets.png>]) (./artigo.bbl
+(./sections/conclusao.tex [13 <./img/tweets.png>]) (./artigo.bbl
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 29.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [15]) [16] (./artigo.aux) ) 
+) [14]) [15] (./artigo.aux) ) 
 Here is how much of TeX's memory you used:
- 2399 strings out of 495041
- 31413 string characters out of 1181897
+ 2396 strings out of 495041
+ 31380 string characters out of 1181897
  92568 words of memory out of 3000000
- 5539 multiletter control sequences out of 15000+50000
+ 5533 multiletter control sequences out of 15000+50000
  22111 words of font info for 45 fonts, out of 3000000 for 9000
  30 hyphenation exceptions out of 8191
  30i,10n,28p,365b,257s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -280,9 +267,9 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (16 pages, 214162 bytes).
+Output written on artigo.pdf (15 pages, 211051 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,125 +8,27 @@ cenário se destaca os ambientes inteligentes. Tais ambientes, também chamados de
 \textit{smart spaces}, interagem com seus usuários auxiliando-os de modo
 proativo e transparente.
 
-Ambientes são compostos por usuários, dispositivos e aplicações. Essas
-aplicações são softwares que  provêem serviços de modo a facilitar as tarefas
-dos usuários no ambiente. Neste cenário, camadas de softwares denominadas de
-middlewares são responsáveis por orquestrar a interação e troca de informações
-entre as aplicações, os usuários e os dispositivos. Essas informações
-denominadas de informações de contexto são importantes na hora de prover
-inteligência ao ambiente.
-% Quais os dispositivos presentes no ambientes e os serviços disponibilidades.
-% Que funcionalidade as aplicações provêem e quais serviços ela necessita.
-
 A inteligência presente em um \textit{smart space} é fruto de aplicações que
 levam em consideração as informações de contexto do ambiente, isto é,
-informações sobre os usuários e dispositivos.
+informações sobre os usuários e dispositivos. Dentre os inúmeros dados de
+contexto que podem ser extraídos do \textit{smart space} destacam-se a
+localização e identidade do usuário, que são fundamentais para a implementação
+de serviços proativos e personalizados. A obtenção de informações acerca da
+localização e identificação dos usuários torna-se um desafio tendo em vista a
+dinamicidade do ambiente, onde usuários entram e saem a todo momento, além de
+interagirem entre si e com diversos dispositivos.
 
-São exemplos de informações de contexto:
-
-\begin{itemize}
-	\item Temperatura do ambiente;
-	\item Luminosidade;
-	\item Informações dos usuários: numero de usuários, freqüência de entrada e
-	saída, quem são eles, onde estão e o que estão fazendo;
-\end{itemize}
-
-Sem tais informações as aplicações não tem inteligência suficiente para
-interagir com os usuários de forma proativa. Essas informações são
-disponibilidades pelo middleware as aplicações.
-
-Dentre os inúmeros dados de contexto que podem ser extraídos do \textit{smart
-space} destacam-se a localização e identidade do usuário, que são fundamentais
-para a implementação de serviços proativos e personalizados. Saber se existe
-algum usuário presente, quem é este usuário e onde ele está no momento pode ser
-fundamental para a implementação de aplicações inteligentes.
-
-A obtenção de informações acerca da localização e identificação dos usuários
-torna-se um desafio tendo em vista a dinamicidade do ambiente, onde usuários
-entram e saem a todo momento, além de interagirem entre si e com diversos
-dispositivos.
-
-Com a utilização de sensores é possível obter dados sobre os usuários, que
-podem ser utilizados em sistemas de rastreamento, localização e identificação,
-provendo assim, ao ambiente, importantes informações de contexto.
 
 O objetivo desse trabalho foi o desenvolvimento de um sistema de rastreamento,
 localização, identificação de usuários em um ambiente inteligente denominado
 TRUE. TRUE é um acrônimo e vem de \textit{Tracking and Recognizing User in the
 Environment}. O Sistema TRUE utiliza o sensor
-\textit{Kinect}\cite{kinect_microsoft} da Microsoft como dispositivo de entrada.
-Esse dispositivo fornece imagens de cor e profundidade do ambiente. No caso
-específico, o foco do nosso trabalho foi prover essas informações ao Middleware
-\textit{uOS}~\cite{fabriciobuzzeto}.
-
-O Middleware \textit{uOS} é um projeto do grupo de pesquisa UnBiquitous
-da Universidade de Brasília que já existe desde 2007 coordenado pela Professora
-Carla Castanho e Professor Ricardo Jacobi cujo foco está na adaptabilidade de
-serviços em um ambiente de computação ubíqua, de modo que os serviços dos
-dispositivos presentes no ambiente possam ser oferecidos e compartilhados.
-
-
-\subsection{Trabalhos Correlatos}
-	
-Agora serão mostrados alguns projetos que focam rastreamento, identificação e
-localização de pessoas em um ambiente inteligente. Alguns dos projetos estudados
-utilizam abordagens multimodais, abordagens que usam mais de um tipo de dado de
-entrada como dados audiovisuais.
-
-\subsubsection{Projeto CHIL} 
-
-O Projeto CHIL (\textit{Computers in the Human Interaction Loop})\cite{chil,
-computerschil} envolve uma rede de quinze laboratórios internacionais de
-pesquisa acadêmica e industrial.
-
-O projeto foca no desenvolvimento de sistemas que auxiliam as interações entre
-grupos de pessoas como, por exemplo, sistemas que facilitam a colaboração em
-reuniões e em salas de palestras.
-
-Dentre os protótipos que foram desenvolvidos no projeto destacam-se um ambiente
-de trabalho perceptivo e colaborativo e um sistema perceptivo de apoio a um
-escritório virtual.
-
-Este projeto utiliza informações obtidas de diferentes algoritmos monomodais
-para criar um sistema de rastreamento e identificação multimodal a partir de
-dados audiovisuais das pessoas no ambiente.
-
-O projeto utiliza além de dados visuais, uma rede distribuída de microfones para
-realizar o rastreamento de múltiplos alvos. A identificação é feito com imagens
-das faces providas a cada 200ms pelas várias câmeras no ambiente.
-
-\subsubsection{Smart Flow}
-	
-Implementação de um sistema multimodal~\cite{salah} que realiza detecção de
-movimento, rastreamento de pessoas, reconhecimento facial, localização baseada em áudio  no
-middleware \textit{SmartFlow}.
-
-Ele consiste em um middleware genérico cliente-servidor que da suporte para o
-processamento dos streams de dados e permite transporte de grande quantidade de
-dados de sensores para algoritmos de reconhecimento em nós distribuídos na rede.
-
-A identificação e o rastreamento é feito por meio de imagens e a localização por
-meio de áudio.
-
-O objetivo do sistema é identificar cada usuário ao entrar pela porta e
-rastreá-lo no ambiente. Para identificar os usuários quando entram o ambiente
-possui uma câmera voltada para a porta que fornece imagens de melhor qualidade.
-
-\subsubsection{AVIARY E MICASA}
-
-Nesse trabalho existem 2 ambientes: o AVIARY e MICASA~\cite{trivedi}. Estes
-ambientes inteligentes são separados fisicamente, porém conectados. O primeiro (AVIARY)
-foi projetado para ser uma pequena sala de conferências. O segundo (MICASA) foi
-projetado para ser uma pequena sala de aula.
- 	
-Nesse trabalho foi desenvolvido uma nova arquitetura para ambientes inteligentes
-chamado DIVA. Esta nova arquitetura pode ser vista como uma rede inteligente de
-câmeras, que são controladas para prover diversas funcionalidades, entre elas a
-detecção de intrusos, rastreamento de várias pessoas, análise de postura,
-identificação de pessoas e análise do movimento.
-
-O sistema proposto por este projeto monitora o ambiente em baixa resolução de
-forma contínua, detectando somente a presença e suas dimensões. Formas de
-aquisição de imagens mais detalhadas são ativadas quando um evento ou
-atividade de potencial interesse é detectado. Esses eventos são os focos de
-atenção do sistema.
+\textit{Kinect}~\cite{kinect_microsoft} da Microsoft como dispositivo de
+entrada. Esse dispositivo fornece imagens de cor e profundidade do ambiente. No
+caso específico, o foco do nosso trabalho foi prover essas informações ao
+Middleware \textit{uOS}~\cite{fabriciobuzzeto}. O Middleware \textit{uOS} é um
+projeto do grupo de pesquisa UnBiquitous da Universidade de Brasília que já
+existe desde 2007 coordenado pela Professora Carla Castanho e Professor Ricardo
+Jacobi cujo foco está na adaptabilidade de serviços em um ambiente de computação
+ubíqua, de modo que os serviços dos dispositivos presentes no ambiente possam
+ser oferecidos e compartilhados.

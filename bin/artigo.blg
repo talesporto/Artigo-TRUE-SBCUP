@@ -2,10 +2,10 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: artigo.aux
 The style file: sbc.bst
 Database file #1: bibliografia.bib
-A bad cross reference---entry "chil"
-refers to entry "DBLP:conf/fgr/2008", which doesn't exist
 A bad cross reference---entry "fall-detection"
 refers to entry "conf/icost/2011", which doesn't exist
+A bad cross reference---entry "chil"
+refers to entry "DBLP:conf/fgr/2008", which doesn't exist
 Warning--I didn't find a database entry for "conf/icost/2011"
 Warning--I didn't find a database entry for "DBLP:conf/fgr/2008"
 Warning--empty publisher in computerschil

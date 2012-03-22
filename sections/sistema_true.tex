@@ -34,32 +34,6 @@ necessário cadastrar um novo usuário no Sistema TRUE, o Middleware acessa o
 Módulo de Registro, também através do Módulo de Integração, que insere as
 imagens da nova pessoa na base de faces e retreina o sistema.
 	
-\subsection{Middleware \textit{uOS}}
-O Middleware \textit{uOS} possui foco na adaptabilidade de serviços em um ambiente de
-computação ubíqua, de modo que os serviços dos dispositivos presentes no
-ambiente possam ser oferecidos e compartilhados.
-
-O \textit{uOS} é uma implementação de um middleware para auxílio de aplicações
-em ambientes de computação ubíqua, cuja proposta é compatível com os conceitos
-apresentados pela DSOA (\textit{Device Service Oriented Architecture}).
-
-O \textit{uOS} possui três camadas:
-
-\begin{enumerate}
-	\item Camada de Rede: responsável por gerenciar as interfaces de rede do
-	dispositivo;
-	\item Camada de Conectividade: responsável por gerenciar conexões entre
-	dispositivo que se comunicam por diferentes tecnologias, como Bluetooth e Ethernet;
-	\item Camada de Adaptabilidade: responsável por gerenciar os serviços
-	disponíveis e o acesso aos mesmos.
-\end{enumerate}
-
-A integração do Sistema TRUE com o middleware \textit{uOS} foi realizada na
-Camada de Adaptabilidade através da implementação de um driver de ``usuário''. Este
-driver se comunica com o Sistema TRUE disponibilizando serviços as aplicações para que
-as mesmas possam trocar informações. Esta integração será apresentada em
-detalhes mais a frente.
-
 \subsection{Módulo de Reconhecimento}
 O Módulo de Reconhecimento é responsável pela identificação dos usuários no
 ambiente utilizando a face como característica biométrica. A face foi escolhida

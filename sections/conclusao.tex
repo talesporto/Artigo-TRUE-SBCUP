@@ -1,52 +1,15 @@
 \section{Conclusão}
 
-Foram conduzidos conjuntos de testes para cada um dos propósitos do Sistema
-TRUE. Os testes de rastreamento simularam diferentes situações diárias onde os
-usuários rastreados interagem entre si e com diferentes objetos. O Sistema TRUE
-se mostrou eficaz tendo em vista que os novos usuários são detectados antes
-mesmo de entrarem por completo no campo de visão do sensor. Além disso,
-revelou-se robusto em casos de oclusões parciais e como esperado, nos casos de
-oclusões totais não foi possível prosseguir com o rastreamento. Os testes também
-mostraram que os limites do sensor permitem até 5 pessoas a uma distância de
-4,057 metros.
+As informações de contexto são importantes para auxiliar as aplicações em suas
+decisões, em especial a localização e a identificação, que fornecem as
+aplicações um maior entendimento do contexto. Como visto, existem poucos
+projetos que proveem essas duas informações em conjunto.
 
-Os testes de localização foram realizados comparando as coordenadas obtidas pelo
-Sistema TRUE com as coordenadas mensuradas manualmente. As coordenadas obtidas
-pelo sistema se mostraram consideravelmente próximas das reais, apresentando
-diferenças de poucos centímetros que aumentam juntamente com a distância entre o
-usuário e o sensor.
+Foram conduzidos alguns conjuntos de testes para cada um dos propósitos do
+Sistema TRUE. O sistema se mostrou eficaz tendo em vista que, para cada um
+dos propósitos testados, os resultados se mostraram satisfatórios e os
+objetivos foram alcançados.
 
-Foram realizados dois cenários de testes de identificação que se diferem na
-estratégia utilizada no cadastro dos usuários. O segundo cenário utiliza uma
-maior quantidade de imagens da face de cada usuário com uma maior variação dos
-ângulos, poses e expressões faciais. Os testes mostraram que a estratégia
-utilizada no cadastro dos usuários tem grande impacto nos resultados do
-reconhecimento, sendo que a taxa de acertos aumentou de 73,63\% (primeiro
-cenário) para 82,5\% (segundo cenário).
-
-Com as informações providas pelo Sistema TRUE, tornou-se possível o
-desenvolvimento de novas aplicações que possuem um maior entendimento do
-contexto do ambiente, como pode ser visto no \textit{UserApp}. Esta aplicação
-utiliza as identidades e posições dos usuários para enviar mensagens de boas
-vindas, despedidas e mensagens para informá-los a quanto tempo estão no mesmo
-lugar.
-
-\subsection{Trabalhos Futuros}
-
-Os dados providos pelo Sistema TRUE e disponibilizados pelo Middleware uOS
-constroem uma nova base para a criação de inúmeras aplicações para ambientes
-inteligentes. A partir das informações de identidade e localização dos usuários,
-tornou-se possível desenvolver aplicações de reconfiguração automática de
-serviços, estabelecimento de contextos e definição de perfis.
-
-Além disso, o Sistema TRUE pode ser melhorado em algumas de suas
-características. Uma dessas melhorias consiste na expansão do sistema para
-permitir a utilização de múltiplos Kinects de modo a expandir sua área de
-cobertura. Essa expansão minimizaria os problemas de oclusão e também aumentaria
-o número máximo de usuários rastreados.
-
-É possível também melhorar os resultados do reconhecimento. Como visto nos
-testes, foi possível obter melhores resultados apenas modificando a estratégia
-de cadastro. Essa melhoria pode ser desenvolvida em duas frentes, como estudo de
-novas formas de cadastros de usuário e novas técnicas que utilizam os dados de
-profundidade para o reconhecimento facial.
+Atualmente estamos aprimorando a confiança estudando técnicas
+mais seguras de reconhecimento. Além disso estamos trabalhando a ideia de
+agregar os dados de múltiplos Kinects minimizando as zonas de oclusão.

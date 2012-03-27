@@ -1,16 +1,16 @@
 \section{Sistema TRUE}
 
-O sistema TRUE (\textit{Tracking and Recognizing Users in the Environment})
+O Sistema TRUE (\textit{Tracking and Recognizing Users in the Environment})
 realiza a identificação, localização e rastreamento de usuário em um ambiente
 inteligente. Para isso são utilizados os dados de vídeo e profundidade providos pelo sensor
 \textit{Kinect}~\cite{kinect_microsoft}. Por fim estas informações são disponibilizadas
-para as aplicações através do middleware \textit{uOS}~\cite{fabriciobuzzeto, alegomes}.
-O projeto é composto por 4 módulos conforme representado na
-Figura~\ref{fig:relacao-modulos}.
+para as aplicações através do middleware
+\textit{uOS}~\cite{fabriciobuzzeto2, fabriciobuzzeto, alegomes}. O projeto é
+composto por 4 módulos conforme representado na Figura~\ref{fig:relacao-modulos}.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.5]{img/modulo-integracao.png}
+		\includegraphics[scale=0.45]{img/modulo-integracao.png}
 	\end{center}
 	\caption{Interação entre o módulos do Sistema TRUE.}
 	\label{fig:relacao-modulos}
@@ -22,8 +22,7 @@ O Módulo de Rastreamento é responsável por rastrear os usuários no ambiente,
 determinar a sua localização física em relação ao sensor \textit{Kinect} e
 gerenciar suas identidades. Para realizar o rastreamento e localização dos
 usuários é utilizada a biblioteca \textit{OpenNI} (\textit{Open Natural
-Interaction}). Trata-se de um \textit{framework} que define \textit{APIs} para o
-desenvolvimento de aplicações de interação natural.
+Interaction})~\cite{OpenNI2010}.
 
 Para a detecção e rastreamento do usuário é utilizada a técnica de subtração de
 fundo com a representação de silhuetas. A localização, por sua vez, é realizada
@@ -50,29 +49,18 @@ O Módulo de Reconhecimento, por sua vez, realiza o reconhecimento facial e
 retorna ao Módulo de Rastreamento o nome do usuário e a confiança obtida. A cada
 500ms, o Módulo de Reconhecimento verifica se chegou algum resultado de
 identificação. Caso tenha chegado, o Módulo de Rastreamento computa o resultado
-e decide qual identidade será atribuída ao respectivo usuário.
-
-Ao invés de realizar o reconhecimento somente quando novos usuários são
-detectados, com o objetivo de melhorar a confiança do reconhecimento, o Sistema
-TRUE realiza continuamente a identificação dos usuários já reconhecidos. Essas
-tentativas de reconhecer novamente os usuários ocorrerão a cada 5 segundos
-seguindo as mesmas etapas de quando um novo usuário for detectado. A única
-etapa que se difere é a primeira, ou seja, ao invés de obter várias imagens de
-um mesmo usuário, é obtida uma imagem de cada usuário rastreado e a mesma é
-enviada ao Módulo de Reconhecimento.
+e decide qual identidade será atribuída ao respectivo usuário. Após o
+reconhecimento inicial, o módulo de rastreamento realiza uma nova tentativa de
+reconhecimento a cada 5 segundos. Desta forma o sistema possibilita uma melhora
+no reconhecimento obtido.
 
 Ao obter um resultado de reconhecimento para determinado usuário, o Módulo de
 Rastreamento deve computar qual identidade será atribuída ao mesmo. Para isso,
 este módulo mantém para cada usuário o número total de vezes que este já foi
-reconhecido e os diferentes nomes obtidos pelo Módulo de Reconhecimento bem
-como a confiança média para cada nome e o número de vezes que cada nome foi
-atribuído àquele usuário. Com todos esses dados, a identidade do usuário é
-definida por meio da Fórmula~\ref{eq:media_ponderada}.
-
-\begin{equation}
-	\label{eq:media_ponderada}
-	M_p = \frac{N_1 * C_1 + N_2 * C_2 + ... + N_n * C_n}{N_1 + N_2 + ... + N_n}
-\end{equation}
+reconhecido e os diferentes nomes obtidos pelo Módulo de Reconhecimento bem como
+a confiança média para cada nome e o número de vezes que cada nome foi atribuído
+àquele usuário. Desta forma á identidade é definida pela média ponderada das
+confianças obtidas, escolhendo-se a de maior valor obtido.
 
 \subsection{Módulo de Reconhecimento}
 O Módulo de Reconhecimento é responsável pela identificação dos usuários no
@@ -98,23 +86,16 @@ Seu funcionamento consiste nos seguintes passos:
 \end{enumerate}
 
 A detecção facial foi desenvolvida utilizando o método
-\textit{Viola-Jones}~\cite{edsonma, violajones}. O \textit{Viola-Jones} é
-implementado pela biblioteca \textit{OpenCV}~\cite{opencv_library} (\textit{Open
-Source Computer Vision}). Basicamente, o processo de detecção facial procura por
-uma face em uma imagem pré-processada. Para realizar detecção facial utilizando
-o método \textit{Viola-Jones} é necessário a utilização de um classificador em
-cascata. O Sistema TRUE utiliza um classificador treinado para detectar faces
-frontais em imagens.
-
-O reconhecimento facial foi desenvolvido utilizando a técnica
-\textit{Eigenfaces}~\cite{hewitt, artigo-eigenface}. Consiste em uma técnica
-bastante satisfatória quando utilizada sobre uma base de faces relativamente
-grande, permitindo ao sistema inferir, das imagens das faces suas principais
-características e, partindo delas, realizar o reconhecimento facial utilizando
-um número reduzido de cálculos, permitindo, assim, um reconhecimento em tempo
-real. A base de dados utilizada no Sistema TRUE é formada por imagens no formato
-PGM (\textit{Portable Gray Map}) com tamanho de 92x112 pixels e em escala de
-cinza.
+Viola-Jones~\cite{edsonma, violajones} cuja a implementação é encontrada na
+biblioteca OpenCV~\cite{opencv_library} (Open Source Computer Vision). O
+processo de detecção facial procura por uma face em uma imagem pré-processada.
+Para realizar detecção facial utilizando o método \textit{Viola-Jones} é
+necessário a utilização de um classificador em cascata. O Sistema TRUE utiliza
+um classificador treinado para detectar faces frontais em imagens. O
+reconhecimento facial foi desenvolvido utilizando a técnica
+\textit{Eigenfaces}~\cite{hewitt, artigo-eigenface}. A base de dados utilizada
+no Sistema TRUE é formada por imagens no formato PGM (\textit{Portable Gray
+Map}) com tamanho de 92x112 pixels e em escala de cinza.
 
 O reconhecimento facial inicia-se projetando a imagem no subespaço através do
 método PCA~\cite{belhumeur} que reduz sua dimensionalidade. Então, calcula-se a
@@ -129,16 +110,16 @@ isoladamente.
 
 \subsection{Módulo de Registro}
 
-O Módulo de Registro é responsável por cadastrar novos usuários no sistema e
-treiná-lo para também reconhecer esse novo usuário. Este consiste das seguintes
-etapas:
+Este módulo trata do registro de novos usuários abrangendo desde a obtenção de
+suas imagems até o treinamento inicial para seu reconhecimento posterior. O
+cadastro de um novo usuário é composto pelas seguintes etapas:
+
 \begin{enumerate}
-	\item Obtenção das imagens do novo usuário;
-	\item Processamento das imagens, isto é, as imagens são convertidas em escala
-	 de cinza, novas imagens são criadas recortando a região da face encontrada.
-	 Em seguida, as imagens são redimensionadas e equalizadas criando assim
-	 padrões de tamanho, brilho e contraste;
-	\item Armazenamento das imagens;
+	\item Obtenção das imagens do novo usuário.
+	\item Processamento das imagens. Consiste em converter as imagens em escala de
+	cinza, recortar a região da face, redimensionar e equalizar para os padrões de
+	tamanho, brilho e contraste desejados.
+	\item Armazenamento das imagens.
 	\item Treinamento do sistema para reconhecer esse usuário.
 \end{enumerate}
 
@@ -156,11 +137,11 @@ ser utilizados pelo Módulo de Reconhecimento.
 Após o treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja
 feito utilizando as novas imagens e informações obtidas com o treinamento.
 
-\subsection{Modulo de Integração}
+\subsection{Módulo de Integração}
 
 O Módulo de Integração é responsável por disponibilizar ao ambiente os dados dos
 usuários. Para isto o Sistema TRUE disponibiliza um \textit{Driver} de Usuário
-(\textit{UserDriver}) para o middleware \textit{uOS}. Tal \textit{driver}
+(\textit{UserDriver}) através do middleware \textit{uOS}. Tal \textit{driver}
 fornece os seguintes serviços de consulta e eventos: 
 
 \begin{itemize}

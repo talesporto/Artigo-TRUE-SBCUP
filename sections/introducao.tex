@@ -1,34 +1,26 @@
 \section{Introdução}
 
-A Computação Ubíqua, ou \textit{ubicomp}, vem sendo tema de diversas pesquisas
-desde o início dos anos 90. Mark Weiser~\cite{weiser1, weiser2} propôs que a
-computação devia ser algo invisível, nos envolvendo, servindo e exigindo o mínimo de esforço possível
-permitindo, ao usuário, ter mais foco na tarefa do que na ferramenta. Nesse
-cenário se destaca os ambientes inteligentes. Tais ambientes, também chamados de
-\textit{smart spaces}, interagem com seus usuários auxiliando-os de modo
-proativo e transparente.
+A Computacao Ubíqua, ou ubicomp, vem sendo tema de diversas pesquisas desde o
+início dos anos 90. Neste sentido temos que a computação devia ser algo
+invisível, nos servindo e exigindo o mínimo de esforco possível~\cite{weiser1,
+weiser2}. Permitindo assim, que o usuário tenha mais foco na tarefa em execução
+que na ferramenta. Um ambiente com tais características é chamado de inteligente
+(\textit{smart space}) pois busca auxiliar seus usuários de modo proativo e
+transparente.
 
-A inteligência presente em um \textit{smart space} é fruto de aplicações que
-levam em consideração as informações de contexto do ambiente, isto é,
-informações sobre os usuários e dispositivos. Dentre os inúmeros dados de
-contexto que podem ser extraídos do \textit{smart space} destacam-se a
-localização e identidade do usuário, que são fundamentais para a implementação
-de serviços proativos e personalizados. A obtenção de informações acerca da
-localização e identificação dos usuários torna-se um desafio tendo em vista a
-dinamicidade do ambiente, onde usuários entram e saem a todo momento, além de
-interagirem entre si e com diversos dispositivos.
-
+A inteligência esperada nestes ambientes é fruto de aplicações que tratam os
+dados fornecidos pelos diversos dispositivos presentes, bem como coordenam suas
+ações. Para que tudo isto ocorra de forma transparente estes softwares devem ser
+sensíveis ao contexto em que estão presentes. Tendo em vista a dinamicidade do
+\textit{smart space}, uma vasta gama de informações podem ser utilizadas para se
+construir este contexto. De maneira especial podemos olhar para as informações
+de identificação e localização do usuário. De posse destas informações é
+possível personalizar as ações bem como direcioná-las aos locais corretos do
+ambiente.
 
 O objetivo desse trabalho foi o desenvolvimento de um sistema de rastreamento,
-localização, identificação de usuários em um ambiente inteligente denominado
-TRUE. TRUE é um acrônimo e vem de \textit{Tracking and Recognizing User in the
-Environment}. O Sistema TRUE utiliza o sensor
-\textit{Kinect}~\cite{kinect_microsoft} da Microsoft como dispositivo de
-entrada. Esse dispositivo fornece imagens de cor e profundidade do ambiente. No
-caso específico, o foco do nosso trabalho foi prover essas informações ao
-Middleware \textit{uOS}~\cite{fabriciobuzzeto}. O Middleware \textit{uOS} é um
-projeto do grupo de pesquisa UnBiquitous da Universidade de Brasília que já
-existe desde 2007 coordenado pela Professora Carla Castanho e Professor Ricardo
-Jacobi cujo foco está na adaptabilidade de serviços em um ambiente de computação
-ubíqua, de modo que os serviços dos dispositivos presentes no ambiente possam
-ser oferecidos e compartilhados.
+localização e identificação de usuários em um ambiente inteligente. Tal sistema
+foi denominado TRUE, um acrônimo para \textit{Tracking and Recognizing User in
+the Environment}. O Sistema TRUE obtém informações do ambiente utilizando o
+sensor Kinect~\cite{kinect_microsoft} da Microsoft e disponibiliza seus resultados para as
+aplicações através do Middleware uOS~\cite{fabriciobuzzeto2, fabriciobuzzeto}.

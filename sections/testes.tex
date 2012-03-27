@@ -10,14 +10,12 @@ Brasília.
 \subsection{Rastreamento}
 
 Foram realizados teste com o objetivo de verificar a eficiência da detecção e o
-dimensão da oclusão dentro do sistema. A oclusão era um problema esperado
-uma vez que o Sistema TRUE utiliza somente um sensor \textit{Kinect} como
-dispositivo de entrada.
-
-Os testes para a detecção foram feitos simulando a entrada de um usuário na cena
-e analisando o momento em que o mesmo era detectado. Em todos os testes o
-usuário era detectado antes mesmo de entrar na área de visão do sistema por
-completo.
+dimensão da oclusão dentro do sistema. A oclusão era um problema esperado uma
+vez que o Sistema TRUE utiliza somente um sensor \textit{Kinect} como
+dispositivo de entrada. Os testes para a detecção foram feitos simulando a
+entrada de um usuário na cena e analisando o momento em que o mesmo era
+detectado. Em todos os testes o usuário era detectado antes mesmo de entrar na
+área de visão do sistema por completo.
 
 Foram realizados 2 testes para a oclusão. No primeiro foi testado o caso em que
 um usuário oculta propositalmente outro já rastreado. Nesta situação, caso o
@@ -52,7 +50,9 @@ Para testar a precisão as coordenadas do eixo z foi realizado o seguinte teste:
 um objeto (uma caixa de papelão) foi colocada em frente ao sensor a diferentes
 distâncias do mesmo (1000mm, 2000mm, 3000mm, 4000mm, 4057mm). Foi observado, a
 discrepância aumenta conforme o objeto se distância do sensor. Neste teste o
-menor erro obtido foi de 3,21mm e o maior de 111,75mm.
+menor erro obtido foi de 3,21mm e o maior de 111,75mm. Desta forma o sistema
+apresenta um erro máximo de 3\% sobre os valores obtidos. Um valor que pode ser
+considerado despresível para a maior parte das aplicações.
 
 Para testar a precisão das coordenadas do eixo x foi realizado o seguinte teste:
 um objeto (uma caixa de papelão) foi colocada a uma distância fixa de 3000
@@ -62,32 +62,32 @@ $\displaystyle \pm990mm$). Foi observado que existe uma diferença constante de
 poucos centímetros ao longo de todo teste. É possível inferir então, que o
 Sistema TRUE consegue fazer estimativas das coordenadas no eixo $\displaystyle
 x$ com erro de poucos centímetros. Neste caso o menor e o maior erro obtido foi
-de 27,19mm e 79,29mm respectivamente.
-
-Acredita-se que os erros apresentados não são significativos a ponto de
-comprometer o uso dos dados fornecidos.
+de 27,19mm e 79,29mm respectivamente. Chegamos então a um erro máximo de 10\%
+sobre os valores obtidos. Este é um valor mais significativo que o teste
+anterior mas, ainda assim, pode ser relevado na maior parte das aplicações.
 
 \subsection{Identificação}
 
 Para testar os resultados de identificação foram realizadas 2 iterações de
 testes. Primeiramente foi construído um cenário de testes que não apresentou
 resultados satisfatórios, com isto foi construído um segundo cenário de teste
-com uma nova abordagem para a coleta de faces. Para sumarizar os
-resultados encontrados utilizamos três taxas. A de verdadeiro positivo, quando
-o sistema identifica o usuário de maneira correta, a verdadeiro negativo, quando
-o sistema identifica o usuário de maneira errada e a falso negativo, quando o
-sistema não identifica o usuário cadastrado.
+com uma nova abordagem para a coleta de faces. Para analisar os resultados foram
+utilizados três percentuais: verdadeiro positivo, quando o sistema identifica o
+usuário de maneira correta; verdadeiro negativo, quando o sistema identifica o
+usuário de maneira errada; e falso negativo, quando o sistema não identifica o
+usuário cadastrado.
 
-No primeiro conjunto de testes, os cadastros dos usuários foram feitos
-utilizando 10 imagens de faces de cada usuário: 6 imagens frontais da face, 2
-imagens da face ligeiramente rotacionada para direita e 2 imagens da face
-ligeiramente rotacionada para esquerda.  Os cadastros foram realizados com essa
-estratégia com o objetivo de diminuir o impacto das variações de poses e ângulo
-no reconhecimento facial.  Observa-se que a taxa de Verdadeiro Positivo
-(73,63\%) foi uma taxa baixa para um sistema de reconhecimento automático. Neste
-conjunto de testes, a taxa de Verdadeiro Negativo foi bem superior a taxa de
-Falso Negativo mostrando que a principal deficiência do reconhecimento facial
-consiste na confusão entre os usuários cadastrados no sistema.
+No primeiro cenário de testes, os cadastros dos usuários foram feitos utilizando
+10 imagens de faces de cada usuário: 6 imagens frontais da face, 2 imagens da
+face ligeiramente rotacionada para direita e 2 imagens da face ligeiramente
+rotacionada para esquerda.  Os cadastros foram realizados com essa estratégia
+com o objetivo de diminuir o impacto das variações de poses e ângulo no
+reconhecimento facial.  Observou-se que a taxa de Verdadeiro Positivo,
+\textbf{73,63\%}, foi uma taxa baixa para um sistema de reconhecimento
+automático. Neste conjunto de testes, a taxa de Verdadeiro Negativo,
+\textbf{15,83\%}, foi bem superior a taxa de Falso Negativo, \textbf{8,34\%},
+mostrando que a principal deficiência do reconhecimento facial consiste na
+confusão entre os usuários cadastrados no sistema.
 
 Os resultados deste primeiro cenário não se mostrou satisfatório. Sob a hipótese
 do resultado ter sido influenciado pela baixa quantidade de faces e poses,
@@ -99,12 +99,14 @@ rosto levemente para cima, para baixo, para esquerda e para direita de maneira
 aleatória e com diferentes expressões faciais.
 
 Para esse segundo cenário houve um aumento na taxa de Verdadeiro Positivo de
-73,63\% para 82,5\% e redução significativa na taxa de Verdadeiro Negativo de
-17,27\% para 6,0\%, mostrando que os casos de confusões entre os usuários foram
-mais raros. A melhora obtida comprova a hipótese que um número maior de poses e
-faces aprimorou a capacidade do sistema de reconhecer seus usuários. Este
-acréscimo de informações torna os resultados mais robustos devido a inclusão de
-informações de mais cenários dos usuários no sistema.
+\textbf{73,63\%} para \textbf{82,5\%} e redução significativa na taxa de
+Verdadeiro Negativo de \textbf{15,83\%} para \textbf{5,46\%}, mostrando que os
+casos de confusões entre os usuários foram mais raros. A melhora obtida comprova
+a hipótese que um número maior de poses e faces aprimorou a capacidade do
+sistema de reconhecer seus usuários. Com uma maior variabilidade nos dados de um
+mesmo usuário temos um melhor treinamento do sistema. Isso torna os valores de
+\textit{eigenfaces} calculados mais robustos para uma maior diversidade de poses
+a serem encontradas durante a execução.  
 
 % \subsection{Integração}
 % 

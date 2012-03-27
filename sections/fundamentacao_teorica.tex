@@ -2,20 +2,19 @@
 
 Em ambientes inteligentes, as informações de contexto sobre os usuários como
 localização e identidade são de grande importância proporcionando uma maior
-acurácia nas tomadas de decisões. Informações de contexto como essas são de
-difícil obtenção devido à dinamicidade do ambiente, no qual usuários entram e
-saem a todo momento e interagem com diversos equipamentos.
+acurácia nas tomadas de decisões. Informações de contexto como essas apresentam
+diversos desafios na sua obtenção tendo em vista que os usuários se movimentam e
+interagem entre si e com os dispositivos de forma dinâmica.
 
 % -----
 
-Existem inúmeras maneiras de identificar um usuário, seja por meio da face,
-íris, voz, entre outras.  Dentre estas, o reconhecimento por meio da face se
-destaca pois sua aquisição é realizada de maneira fácil e não intrusiva. O
-reconhecimento facial continua sendo um desafio por causa de várias dificuldades
-como iluminação, ângulos e poses, expressões, maquiagem e extração da face do
-contexto ou do fundo. Basicamente, o processo de reconhecimento facial pode ser
-divido em duas tarefas principais, a detecção de faces em imagens e o
-reconhecimento das faces encontradas.
+Dentre as diversas formas de se identificar um usuário, como pela íris e padrão
+de voz, o reconhecimento por meio da face se destaca devido a sua aquisção ser
+realizada de maneira não intrusiva. Porém  o reconhecimento desta informação
+apresenta desafios devido a variações de iluminação, ângulos e poses,
+expressões, maquiagem, dentre outros. Neste cenário, o processo de
+reconhecimento facial pode ser divido em duas tarefas principais, a detecção das
+faces nas imagens e o reconhecimento destas.
 
 A detecção de faces é definida como o processo que determina a existência ou não
 de faces em uma imagem. Atualmente, existem diferentes métodos/técnicas de
@@ -25,36 +24,30 @@ para construir uma abordagem de detecção facial rápida e eficaz utilizando
 apenas imagens em tons de cinza distinguindo-se dos outros métodos. Apesar da
 simplicidade obtém altas taxas de detecção. 
 
-Na etapa de reconhecimento, as faces detectadas, serão comparadas com um banco
-de dados de faces conhecidas. O \textit{Eigenfaces}~\cite{hewitt} trata-se de
-uma técnica bastante satisfatória, ela permite ao sistema inferir das imagens
-suas principais características e, partindo delas, realizar o reconhecimento das
-imagens utilizando um número bastante reduzido de cálculos. Esta técnica aplica
-o PCA (\textit{Principal Component Analisys})~\cite{belhumeur} nas imagens do
-banco de faces gerando uma lista de
-\textit{eigenfaces}. A partir desta lista é calculada uma \textit{eigenface}
-média. Cada \textit{eigenface} possui um valor associado (\textit{eigenvalue})
-que representa a distancia da \textit{eigenface} media da respectiva
-\textit{eigenface}. A técnica é implementado pela biblioteca
-OpenCV~\cite{opencv_library} e é amplamente utilizada.
+Para o reconhecimento, busca-se padrões nas faces de forma que estes posssam ser
+usados para a identificação do usuário. A técnica Eigenfaces~\cite{hewitt}
+consiste em extrair as principais características de uma face e com base nelas é
+determinado um valor correspondente, o \textit{eigenvalue}. Para tal é aplicada
+a técnica de PCA (\textit{Principal Component Analisys})~\cite{belhumeur} nas
+imagens já conhecidas. Com isto se obtém um valor de \textit{eigenvalue} médio
+bem como a distância de cada face para este valor. Assim quando se identifica
+uma nova face, se cálcula o valor do \textit{eigenvalue} e se compara com as
+distâncias conhecidas. Esta técnica apresenta bons resultados e é amplamente
+utiliza em blibliotecas como a OpenCV~\cite{opencv_library}.
 
 % -----
 
-Para localizar um usuário é muito utilizado as imagens de profundidade. Essas
-são imagens cujo valor em cada pixel é uma função da distância do ponto ao
-sensor. Estas imagens podem ser adquiridas diretamente utilizando sensores
-específicos.
-
-Alguns dos métodos para se obter imagens de profundidade mais conhecidos são o
-tempo de voo (TOF - Time of flight)~\cite{jain, fall-detection} e a luz
-estruturada~\cite{fall-detection}. A luz estruturada consiste em uma imagem de
-profundidade. Uma imagem de profundidade não pode ser obtida utilizando somente
-um sensor de vídeo. Porém, adicionando uma textura artificial na cena, uma
-imagem de profundidade pode ser recuperada. Esse princípio consiste na projeção
-de pontos de luz infravermelhos na cena que são recuperados por uma câmera
-infravermelha que lê a textura. Trata-se de um método mais acessível que o TOF,
-porém é pouco eficiente para estimar a distância dos pontos nas bordas dos
-objetos e em posições muito longe do sensor.
+Para a localização do usuário podemos utilizar a técnica de imagens de
+profundidade onde a cada pixel da imagem é atrelado a um valor de distância
+relativa ao sensor. Dentre as técnicas conhecidas podemos destacar a TOF
+(\textit{Time of Flight})~\cite{jain, fall-detection} e luz
+estruturada~\cite{fall-detection}. Uma imagem de profundidade não pode ser
+obtida utilizando somente um sensor de vídeo. Porém, adicionando uma textura
+artificial na cena, uma imagem de profundidade pode ser recuperada. Esse
+princípio consiste na projecao de pontos de luz infravermelhos na cena que são
+recuperados por uma câmera infravermelha que lê a textura. Trata-se de um método
+mais acessível que o TOF, porém pouco eficiente para estimar a distância nas
+bordas dos objetos e em posicoes muito longe do sensor.
 
 % -----
 
@@ -64,18 +57,13 @@ cena. Em um ambiente inteligente, o rastreamento de pessoas é uma das principais
 ferramentas para detectar novos usuários e serve como base para que novas
 informações possam ser coletadas~\cite{yilmaz}. Basicamente, o processo de
 rastreamento pode ser dividido em duas etapas detecção do objeto e rastreamento
-do objeto detectado.
-
-Antes de falar como são feitos a detecção e o rastreamento de entidades, vamos
-mostrar como as entidades rastreadas são representadas. As entidades rastreadas
-devem ser representadas de alguma maneira. Geralmente, as representações são
-baseados em suas formas, existindo uma forte relação entre a representação e o
-algoritmo de rastreamento escolhido. Dentre as representações conhecidas se
-destacam a por pontos, por formas geométricas primitivas, por silhueta e
-contorno, por modelos de formas articuladas e por modelos de esqueletos.
-A representação por silhueta e contorno é mais indicada para rastrear entidades
-complexas de forma não rígida. Ela é popular devido à sua simplicidade e é mais
-utilizada no rastreamento de pessoas.
+do objeto detectado. Existe um forte relacionamento entre as técnicas de
+rastreamento e a representação usada pelos mesmos. Dentre as representações
+conhecidas destacam-se a por pontos, por formas geométricas primitivas, por
+silhueta e contorno, por modelos de formas articuladas e por modelos de
+esqueletos. A representacao por silhueta e contorno é mais indicada para
+rastrear entidades complexas de forma não rígida. Ela é popular devido a sua
+simplicidade sendo muito utilizada no rastreamento de pessoas.
 
 Todo método de rastreamento requer um mecanismo de detecção de entidades que
 pode ser realizada a cada \textit{frame} (quadro) obtido ou na primeira vez que

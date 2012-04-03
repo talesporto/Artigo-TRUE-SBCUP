@@ -10,45 +10,45 @@ Warning--I didn't find a database entry for "conf/icost/2011"
 Warning--I didn't find a database entry for "DBLP:conf/fgr/2008"
 Warning--empty year in artigo-eigenface
 Warning--empty publisher in computerschil
-You've used 21 entries,
+You've used 20 entries,
             1935 wiz_defined-function locations,
-            591 strings with 7239 characters,
-and the built_in function-call counts, 7992 in all, are:
-= -- 752
-> -- 374
-< -- 16
-+ -- 131
-- -- 127
-* -- 643
-:= -- 1446
-add.period$ -- 64
-call.type$ -- 21
-change.case$ -- 164
-chr.to.int$ -- 21
-cite$ -- 23
-duplicate$ -- 313
-empty$ -- 522
-format.name$ -- 150
-if$ -- 1547
+            587 strings with 7022 characters,
+and the built_in function-call counts, 7728 in all, are:
+= -- 724
+> -- 367
+< -- 15
++ -- 129
+- -- 125
+* -- 626
+:= -- 1392
+add.period$ -- 61
+call.type$ -- 20
+change.case$ -- 158
+chr.to.int$ -- 20
+cite$ -- 22
+duplicate$ -- 302
+empty$ -- 505
+format.name$ -- 147
+if$ -- 1498
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 18
-newline$ -- 108
-num.names$ -- 65
-pop$ -- 151
+newline$ -- 103
+num.names$ -- 62
+pop$ -- 148
 preamble$ -- 1
-purify$ -- 166
+purify$ -- 160
 quote$ -- 0
-skip$ -- 245
+skip$ -- 235
 stack$ -- 0
-substring$ -- 423
+substring$ -- 411
 swap$ -- 46
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 124
+type$ -- 118
 warning$ -- 2
-while$ -- 55
+while$ -- 53
 width$ -- 0
-write$ -- 269
+write$ -- 255
 (There were 2 error messages)

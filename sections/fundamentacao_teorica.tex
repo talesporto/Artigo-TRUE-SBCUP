@@ -16,30 +16,30 @@ expressões, maquiagem, dentre outros. Neste cenário, o processo de
 reconhecimento facial pode ser divido em duas tarefas principais, a detecção das
 faces nas imagens e o reconhecimento destas.
 
-A detecção de faces é definida como o processo que determina a existência ou não
-de faces em uma imagem. Atualmente, existem diferentes métodos/técnicas de
-detecção de faces. Um dos mais utilizados é o
-\textit{Viola-Jones}~\cite{edsonma, violajones}. Este método pode ser utilizado
-para construir uma abordagem de detecção facial rápida e eficaz utilizando
-apenas imagens em tons de cinza distinguindo-se dos outros métodos. Apesar da
-simplicidade obtém altas taxas de detecção. 
+A detecção de faces e definida como o processo que determina a existência, ou
+não, de uma ou mais faces em uma imagem. Atualmente existem diferentes métodos
+para realizar esta tarefa. Dentre eles se destaca o
+\textit{Viola-Jones}~\cite{edsonma, violajones}. que largamente utilizado. Tal
+método pode ser utilizado para construir uma abordagem de deteccao facial de
+maneira rápida e eficaz utilizando apenas imagens em tons de cinza, o que o
+distingue dos outros métodos além do mesmo abter altas taxas de acerto.
 
 Para o reconhecimento, busca-se padrões nas faces de forma que estes posssam ser
 usados para a identificação do usuário. A técnica Eigenfaces~\cite{hewitt}
 consiste em extrair as principais características de uma face e com base nelas é
 determinado um valor correspondente, o \textit{eigenvalue}. Para tal é aplicada
-a técnica de PCA (\textit{Principal Component Analisys})~\cite{belhumeur} nas
-imagens já conhecidas. Com isto se obtém um valor de \textit{eigenvalue} médio
-bem como a distância de cada face para este valor. Assim quando se identifica
-uma nova face, se cálcula o valor do \textit{eigenvalue} e se compara com as
-distâncias conhecidas. Esta técnica apresenta bons resultados e é amplamente
-utiliza em blibliotecas como a OpenCV~\cite{opencv_library}.
+a técnica de PCA (\textit{Principal Component Analisys})~\cite{belhumeur} em
+imagens conhecidas. Com isto se obtém um valor de \textit{eigenvalue} médio bem
+como a distância de cada face para este valor. Assim quando se identifica uma
+nova face, se calcula o valor do \textit{eigenvalue} e se compara com as
+distâncias conhecidas. Esta técnica apresenta bons resultados sendo amplamente
+utilizada em diversas bibliotecas, como a OpenCV~\cite{opencv_library}.
 
 % -----
 
 Para a localização do usuário podemos utilizar a técnica de imagens de
 profundidade onde a cada pixel da imagem é atrelado a um valor de distância
-relativa ao sensor. Dentre as técnicas conhecidas podemos destacar a TOF
+relativa ao sensor. Dentre as técnicas conhecidas podemos também destacar a TOF
 (\textit{Time of Flight})~\cite{jain, fall-detection} e luz
 estruturada~\cite{fall-detection}. Uma imagem de profundidade não pode ser
 obtida utilizando somente um sensor de vídeo. Porém, adicionando uma textura
@@ -56,7 +56,7 @@ entidade (objeto ou pessoa) em um plano de imagem à medida em que se move na
 cena. Em um ambiente inteligente, o rastreamento de pessoas é uma das principais
 ferramentas para detectar novos usuários e serve como base para que novas
 informações possam ser coletadas~\cite{yilmaz}. Basicamente, o processo de
-rastreamento pode ser dividido em duas etapas detecção do objeto e rastreamento
+rastreamento pode ser dividido em duas etapas: detecção do objeto e rastreamento
 do objeto detectado. Existe um forte relacionamento entre as técnicas de
 rastreamento e a representação usada pelos mesmos. Dentre as representações
 conhecidas destacam-se a por pontos, por formas geométricas primitivas, por

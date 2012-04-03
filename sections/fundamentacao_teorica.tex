@@ -9,7 +9,7 @@ interagem entre si e com os dispositivos de forma dinâmica.
 % -----
 
 Dentre as diversas formas de se identificar um usuário, como pela íris e padrão
-de voz, o reconhecimento por meio da face se destaca devido a sua aquisção ser
+de voz, o reconhecimento por meio da face se destaca devido a sua aquisição ser
 realizada de maneira não intrusiva. Porém  o reconhecimento desta informação
 apresenta desafios devido a variações de iluminação, ângulos e poses,
 expressões, maquiagem, dentre outros. Neste cenário, o processo de
@@ -20,11 +20,11 @@ A detecção de faces e definida como o processo que determina a existência, ou
 não, de uma ou mais faces em uma imagem. Atualmente existem diferentes métodos
 para realizar esta tarefa. Dentre eles se destaca o
 \textit{Viola-Jones}~\cite{edsonma, violajones}. que largamente utilizado. Tal
-método pode ser utilizado para construir uma abordagem de deteccao facial de
+método pode ser utilizado para construir uma abordagem de detecção facial de
 maneira rápida e eficaz utilizando apenas imagens em tons de cinza, o que o
-distingue dos outros métodos além do mesmo abter altas taxas de acerto.
+distingue dos outros métodos além do mesmo obter altas taxas de acerto.
 
-Para o reconhecimento, busca-se padrões nas faces de forma que estes posssam ser
+Para o reconhecimento, busca-se padrões nas faces de forma que estes possam ser
 usados para a identificação do usuário. A técnica Eigenfaces~\cite{hewitt}
 consiste em extrair as principais características de uma face e com base nelas é
 determinado um valor correspondente, o \textit{eigenvalue}. Para tal é aplicada
@@ -44,15 +44,15 @@ relativa ao sensor. Dentre as técnicas conhecidas podemos também destacar a TOF
 estruturada~\cite{fall-detection}. Uma imagem de profundidade não pode ser
 obtida utilizando somente um sensor de vídeo. Porém, adicionando uma textura
 artificial na cena, uma imagem de profundidade pode ser recuperada. Esse
-princípio consiste na projecao de pontos de luz infravermelhos na cena que são
+princípio consiste na projeção de pontos de luz infravermelhos na cena que são
 recuperados por uma câmera infravermelha que lê a textura. Trata-se de um método
 mais acessível que o TOF, porém pouco eficiente para estimar a distância nas
-bordas dos objetos e em posicoes muito longe do sensor.
+bordas dos objetos e em posições muito longe do sensor.
 
 % -----
 
 O rastreamento pode ser definido como o problema de estimar a trajetória de uma
-entidade (objeto ou pessoa) em um plano de imagem à medida em que se move na
+entidade (objeto ou pessoa) em um plano de imagem à medida que se move na
 cena. Em um ambiente inteligente, o rastreamento de pessoas é uma das principais
 ferramentas para detectar novos usuários e serve como base para que novas
 informações possam ser coletadas~\cite{yilmaz}. Basicamente, o processo de
@@ -61,7 +61,7 @@ do objeto detectado. Existe um forte relacionamento entre as técnicas de
 rastreamento e a representação usada pelos mesmos. Dentre as representações
 conhecidas destacam-se a por pontos, por formas geométricas primitivas, por
 silhueta e contorno, por modelos de formas articuladas e por modelos de
-esqueletos. A representacao por silhueta e contorno é mais indicada para
+esqueletos. A representação por silhueta e contorno é mais indicada para
 rastrear entidades complexas de forma não rígida. Ela é popular devido a sua
 simplicidade sendo muito utilizada no rastreamento de pessoas.
 

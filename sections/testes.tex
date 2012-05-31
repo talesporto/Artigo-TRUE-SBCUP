@@ -9,7 +9,7 @@ Brasília.
 
 \subsection{Rastreamento}
 
-Foram realizados teste com o objetivo de verificar a eficiência da detecção e o
+Foram realizados testes com o objetivo de verificar a eficiência da detecção e o
 dimensão da oclusão dentro do sistema. A oclusão era um problema esperado uma
 vez que o Sistema TRUE utiliza somente um sensor \textit{Kinect} como
 dispositivo de entrada. Os testes para a detecção foram feitos simulando a
@@ -17,7 +17,7 @@ entrada de um usuário na cena e analisando o momento em que o mesmo era
 detectado. Em todos os testes o usuário era detectado antes mesmo de entrar na
 área de visão do sistema por completo.
 
-Foram realizados 2 testes para a oclusão. No primeiro foi testado o caso em que
+Foram realizados dois testes para a oclusão. No primeiro foi testado o caso em que
 um usuário oculta propositalmente outro já rastreado. Nesta situação, caso o
 usuário rastreado continuasse oculto, o sistema o determinava como perdido. Por
 outro lado, nos casos de oclusão parcial, o sistema se mostrou robusto. No
@@ -33,9 +33,7 @@ Sistema TRUE considerou o objeto como sendo parte do usuário. Entretanto, esta
 situação não prejudicou a eficiência do sistema. Por outro lado, os problemas
 com interação entre usuários foram mais raros, porém tiveram impacto maior. Tais
 problemas consistem em ``interferências'' que ocorreram em algumas situações de
-contato entre dois ou mais usuários.
-
-Apesar dos problemas relatados, o rastreamento conseguiu, na maioria dos testes,
+contato entre dois ou mais usuários. Apesar dos problemas relatados, o rastreamento conseguiu, na maioria dos testes,
 atender às necessidades rastreando os diversos usuários no ambiente em suas
 atividades diárias.
 
@@ -49,7 +47,7 @@ para as coordenada do eixo x e z.
 Para testar a precisão as coordenadas do eixo z foi realizado o seguinte teste:
 um objeto (uma caixa de papelão) foi colocada em frente ao sensor a diferentes
 distâncias do mesmo (1000mm, 2000mm, 3000mm, 4000mm, 4057mm). Foi observado, a
-discrepância aumenta conforme o objeto se distância do sensor. Neste teste o
+discrepância aumenta conforme o objeto se distancia do sensor. Neste teste o
 menor erro obtido foi de 3,21mm e o maior de 111,75mm. Desta forma o sistema
 apresenta um erro máximo de 3\% sobre os valores obtidos. Um valor que pode ser
 considerado desprezível para a maior parte das aplicações.
@@ -69,30 +67,28 @@ anterior mas, ainda assim, pode ser relevado na maior parte das aplicações.
 \subsection{Identificação}
 
 Para testar os resultados de identificação foram realizadas 2 iterações de
-testes. Primeiramente foi construído um cenário de testes que não apresentou
-resultados satisfatórios, com isto foi construído um segundo cenário de teste
-com uma nova abordagem para a coleta de faces. Para analisar os resultados foram
+testes, uma vez que a primeira proposta não apresentou resultados satisfatórios.
+ Para análise foram
 utilizados três percentuais: verdadeiro positivo, quando o sistema identifica o
 usuário de maneira correta; verdadeiro negativo, quando o sistema identifica o
 usuário de maneira errada; e falso negativo, quando o sistema não identifica o
 usuário cadastrado.
 
-No primeiro cenário de testes, os cadastros dos usuários foram feitos utilizando
-10 imagens de faces de cada usuário: 6 imagens frontais da face, 2 imagens da
-face ligeiramente rotacionada para direita e 2 imagens da face ligeiramente
-rotacionada para esquerda.  Os cadastros foram realizados com essa estratégia
-com o objetivo de diminuir o impacto das variações de poses e ângulo no
+No primeiro cenário de testes, os cadastros foram feitos utilizando
+10 imagens de faces de cada usuário: 6 imagens frontais, 2 imagens da
+face ligeiramente rotacionada para a direita e 2 imagens dela ligeiramente
+rotacionada para a esquerda.  Essa estratégia tem
+com o objetivo diminuir o impacto das variações de poses e ângulo no
 reconhecimento facial.  Observou-se que a taxa de Verdadeiro Positivo,
 \textbf{73,63\%}, foi uma taxa baixa para um sistema de reconhecimento
-automático. Neste conjunto de testes, a taxa de Verdadeiro Negativo,
+automático. A taxa de Verdadeiro Negativo,
 \textbf{15,83\%}, foi bem superior a taxa de Falso Negativo, \textbf{8,34\%},
 mostrando que a principal deficiência do reconhecimento facial consiste na
 confusão entre os usuários cadastrados no sistema.
 
-Os resultados deste primeiro cenário não se mostrou satisfatório. Sob a hipótese
+Esses resultados não foram considerados satisfatórios. Sob a hipótese
 do resultado ter sido influenciado pela baixa quantidade de faces e poses,
-construiu-se um segundo cenário de testes. Neste a estratégia utilizada nos
-cadastros do usuários foi diferente. Os cadastros foram feitos utilizando 100
+construiu-se um segundo cenário de testes, onde os cadastros foram feitos utilizando 100
 imagens das faces de cada usuário em diferentes ângulos, posições e expressões
 faciais. No momento do cadastro, foi solicitado que os usuários movimentassem o
 rosto levemente para cima, para baixo, para esquerda e para direita de maneira

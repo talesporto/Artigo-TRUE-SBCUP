@@ -1,38 +1,38 @@
 \section{Trabalhos Correlatos}
 	
 Rastreamento, localização e identificação de usuários é um tema que tem motivado
-diversos trabalhos na academia. Aqui apresentaremos alguns projetos que se
+diversos trabalhos na academia. A seguir são apresentados alguns projetos que se
 destacam dentro desta área de pesquisa.
 
 O Projeto CHIL \cite{chil, computerschil} possui foco em auxiliar nas interações
 de pessoas em ambientes colaborativos, como salas de reuniões e palestras. Ele
 utiliza dados de áudio e vídeo do ambiente como fontes de informação.
-Porém, para a identificação e localização dos usuários são utilizados apenas o
+Porém, para a identificação e localização dos usuários é utilizado apenas o
 áudio coletado através de um vetor de microfones.
 
-O \textit{SmartFlow} \cite{salah} é um middleware que realiza a detecção de
-movimento, rastreamento de pessoas, reconhecimento facial, localização baseada em áudio.
+O \textit{SmartFlow} \cite{salah} é um \emph{middleware} que realiza a detecção de
+movimento, o rastreamento de pessoas, o reconhecimento facial e a localização baseada em áudio.
 O objetivo do sistema é identificar cada usuário ao entrar pela porta e
-rastreá-lo no ambiente. Para identificar os usuários quando entram o ambiente
-possui uma câmera voltada para a porta que fornece imagens de melhor qualidade.
+rastreá-lo no ambiente. Para identificar os usuários no momento da entrada o ambiente
+possui uma câmera voltada para a porta que fornece imagens de qualidade superior.
 
 O AVIARY e MICASA~\cite{trivedi} são dois \textit{smart spaces}. Estes
 ambientes inteligentes são separados fisicamente, porém conectados. O primeiro
-(AVIARY) foi projetado para ser uma pequena sala de conferências. O segundo
-(MICASA) foi projetado para ser uma pequena sala de aula. Nesse trabalho foi
-desenvolvido uma nova arquitetura para ambientes inteligentes chamado DIVA. O
-sistema proposto por este projeto monitora o ambiente em baixa resolução de
-forma contínua, detectando somente a presença e suas dimensões. Formas de
+(AVIARY) foi projetado para ser uma pequena sala de conferências e o segundo
+(MICASA) uma pequena sala de aula. Nesse trabalho foi
+desenvolvida uma nova arquitetura para ambientes inteligentes chamado DIVA. O
+sistema proposto monitora o ambiente em baixa resolução de
+forma contínua, detectando somente presença e dimensões da entidade detectada. Formas de
 aquisição de imagens mais detalhadas são ativadas quando um evento ou atividade
 de potencial interesse é detectado. Esses eventos são os focos de atenção do
 sistema.
 
-Os projetos aqui apresentados mostram avanços na localização e identificação de
+Os projetos apresentados acima mostram avanços na localização e identificação de
 usuários. Cada um busca utilizar os dados mais importantes ou abundantes
 encontrados para estas finalidades (nos casos citados: áudio ou vídeo).
-Independente da fonte de informação quando a característica de identificação é
-interrompida (a face do usuário não está voltada a câmera ou o usuário não está
-falando) não temos o rastreamento do mesmo. Sendo assim, manter esta informação
-relacionada a outros dados disponíveis permitiria rastrear o usuário mesmo
-durante momentos de oclusão de sua identificação. Este é o foco do sistema TRUE
-aqui apresentado.
+Entretanto, nestes o rastreamento é perdido quando da interrupção do processo de identificação 
+(a face do usuário não está voltada  para a câmera ou o usuário não está falando). 
+
+Estabelecer uma
+correlação com dados disponíveis para manter o rastreamento do usuário, mesmo
+durante momentos de oclusão de sua identificação, é o foco do sistema TRUE.

@@ -4,9 +4,9 @@ O Sistema TRUE (\textit{Tracking and Recognizing Users in the Environment})
 realiza a identificação, localização e rastreamento de usuário em um ambiente
 inteligente. Para isso são utilizados os dados de vídeo e profundidade providos
 pelo sensor \textit{Kinect}~\cite{kinect_microsoft}. Por fim estas informações
-são disponibilizadas para as aplicações através do middleware
-\textit{uOS}~\cite{fabriciobuzzeto2}. O projeto é composto por 4 módulos,
-representado na Figura~\ref{fig:relacao-modulos}, que serão apresentados a
+são disponibilizadas para aplicações sensíveis ao contexto através do middleware
+\textit{uOS}~\cite{fabriciobuzzeto2}. O projeto é composto por 4 módulos
+(Figura~\ref{fig:relacao-modulos}) que serão detalhados a
 seguir.
 
 \begin{figure}[htb]
@@ -49,25 +49,23 @@ face e enviada ao Módulo de Reconhecimento requisitando identificação ao mesmo.
 O Módulo de Reconhecimento, por sua vez, realiza o reconhecimento facial e
 retorna ao Módulo de Rastreamento o nome do usuário e a confiança obtida. A cada
 500ms, o Módulo de Reconhecimento verifica se chegou algum resultado de
-identificação. Caso tenha chegado, o Módulo de Rastreamento computa o resultado
-e decide qual identidade será atribuída ao respectivo usuário. Após o
-reconhecimento inicial, o módulo de rastreamento realiza uma nova tentativa de
-reconhecimento a cada 5 segundos. Desta forma o sistema possibilita uma melhora
-no reconhecimento obtido.
+identificação. Caso tenha chegado, o Módulo de Rastreamento decide qual identidade será atribuída ao respectivo usuário. Após o
+reconhecimento inicial, com o objetivo de melhorar a confiança, o módulo de rastreamento realiza uma nova tentativa de
+reconhecimento a cada 5 segundos.
 
 Ao obter um resultado de reconhecimento para determinado usuário, o Módulo de
 Rastreamento deve computar qual identidade será atribuída ao mesmo. Para isso,
 este módulo mantém para cada usuário o número total de vezes que este já foi
 reconhecido e os diferentes nomes obtidos pelo Módulo de Reconhecimento bem como
 a confiança média para cada nome e o número de vezes que cada nome foi atribuído
-àquele usuário. Desta forma á identidade é definida pela média ponderada das
+àquele usuário. Desta forma a identidade é definida pela média ponderada das
 confianças obtidas, escolhendo-se a de maior valor obtido.
 
 \subsection{Módulo de Reconhecimento}
 O Módulo de Reconhecimento é responsável pela identificação dos usuários no
 ambiente. Para isto é utilizada a imagem do usuário (obtida pelo módulo de
 rastreamento) de onde se obtém a face do mesmo. Desta forma o reconhecimento
-pode ser realizado sem atuação explícita ou intrusão nas atividades do usuário.
+pode ser realizado sem intrusão nas atividades do usuário.
 Seu funcionamento consiste nos seguintes passos:
 
 \begin{enumerate}
@@ -81,13 +79,13 @@ Seu funcionamento consiste nos seguintes passos:
 	\item  Processamento da imagem, ou seja, uma nova imagem é criada recortando a
 	região da face encontrada. A imagem é, então, redimensionada e equalizada criando assim
 	um padrão de tamanho, brilho e contraste aumentando a acurácia do reconhecimento.
-	\item  Reconhecimento facial com a técnica Eigenfaces. 
+	\item  Reconhecimento facial com a técnica \emph{Eigenfaces}. 
 	\item  Retorno do nome do usuário com a face ``mais parecida'' e a confiança do
 	 reconhecimento.
 \end{enumerate}
 
 A detecção facial foi desenvolvida utilizando o método
-Viola-Jones~\cite{edsonma, violajones} cuja a implementação é encontrada na
+\emph{Viola-Jones}~\cite{edsonma, violajones} cuja a implementação é encontrada na
 biblioteca OpenCV~\cite{opencv_library} (Open Source Computer Vision). O
 processo de detecção facial procura por uma face em uma imagem pré-processada.
 Para realizar detecção facial utilizando o método \textit{Viola-Jones} é
@@ -105,7 +103,7 @@ de treinamento obtendo uma lista de distâncias. Esta lista de distâncias é
 comparada com a lista de distâncias de cada usuário, também obtidas na etapa de
 treinamento, obtendo o usuário cuja lista de distâncias é a mais similar. Para o
 cálculo da distância é utilizado tanto a distância Euclidiana como o Mahalanobis
-~\cite{perlibakas}. Conforme exposto na Sessão \ref{sec:testes} foi observado
+~\cite{perlibakas}. Conforme exposto na sessão \ref{sec:testes} foi observado
 que a utilização de ambas apresentou resultados mais satisfatórios que ambas
 isoladamente.
 
@@ -130,19 +128,17 @@ de imagens é obtido lendo todas as imagens contidas no banco de faces. Através
 deste vetor, obtém-se a \textit{eigenface} média, os \textit{eigenfaces} e os
 \textit{eigenvalues}. Para cada usuário cadastrado no Sistema TRUE, suas imagens
 são projetadas no subespaço através do método PCA  que reduz suas
-dimensionalidades, e são calculadas suas distâncias em relação aos eigenfaces
+dimensionalidades, e são calculadas suas distâncias em relação aos \emph{eigenfaces}
 obtendo um vetor de distâncias. Os \textit{eigenfaces}, os \textit{eigenvalues},
 a \textit{eigenface} média e os vetores de distâncias são armazenados e podem
-ser utilizados pelo Módulo de Reconhecimento.
-
-Após o treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja
+ser utilizados pelo Módulo de Reconhecimento. Após o treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja
 feito utilizando as novas imagens e informações obtidas com o treinamento.
 
 \subsection{Módulo de Integração}
 
-O Módulo de Integração é responsável por disponibilizar ao ambiente os dados dos
-usuários. Para isto o Sistema TRUE disponibiliza um \textit{Driver} de Usuário
-(\textit{UserDriver}) através do middleware \textit{uOS}. Tal \textit{driver}
+O Módulo de Integração é responsável por disponibilizar ao \emph{smart space} os dados dos
+usuários. Para isto, o Sistema TRUE disponibiliza um \textit{Driver} de Usuário
+(\textit{UserDriver}) através do \emph{middleware} \textit{uOS}. Tal \textit{driver}
 fornece os seguintes serviços de consulta e eventos: 
 
 \begin{itemize}

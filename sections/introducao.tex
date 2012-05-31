@@ -1,26 +1,50 @@
 \section{Introdução}
 
-A Computação Ubíqua, ou ubicomp, vem sendo tema de diversas pesquisas desde o
-início dos anos 90. Seu enfoque está em que a computação deveria ser algo
-invisível, nos servindo e exigindo o mínimo de esforço possível~\cite{weiser1,
-weiser2}. Permitindo assim, que o usuário tenha mais foco na tarefa em execução
-que na ferramenta. Um ambiente com tais características é chamado de inteligente
-(\textit{smart space}) pois busca auxiliar seus usuários de modo proativo e
-transparente.
+Dentre as tecnologias envolvidas na criação de espaços inteligentes, baseados 
+nos conceitos de Computação Ubíqua ou Pervasiva ~\cite{weiser1, weiser2},
+a sensibilidade ao contexto certamente representa um papel fundamental. 
+A transparência no atendimento de demandas de um usuário requer informações
+sobre ele, tais como identidade, localização, estado físico e emocional e proximidade
+de dispositivos disponíveis no ambiente. Estabelecendo uma correlação entre 
+estas informações e serviços solicitados, aplicações inteligentes podem então
+auxiliá-lo de forma mais eficiente.
 
-A inteligência esperada nestes ambientes é fruto de aplicações que tratam os
-dados fornecidos pelos diversos dispositivos presentes, bem como coordenam suas
-ações. Para que tudo isto ocorra de forma transparente estes softwares devem ser
-sensíveis ao contexto em que estão presentes. Tendo em vista a dinamicidade do
-\textit{smart space}, uma vasta gama de informações podem ser utilizadas para se
-construir este contexto. De maneira especial podemos olhar para as informações
-de identificação e localização do usuário. De posse destas informações é
-possível personalizar as ações bem como direcioná-las aos locais corretos de
-atuação.
+% Seu enfoque estç em que a computação deveria ser algo
+%invisível, nos servindo e exigindo o mínimo de esforço possível. 
+%Permitindo assim, que o usuçrio tenha mais foco na tarefa em execução
+%que na ferramenta. Um ambiente com tais características é chamado de inteligente
+%(\textit{smart space}) pois busca auxiliar seus usuçrios de modo proativo e
+%transparente.
 
-Apresentaremos aqui um sistema de rastreamento, localização e identificação de
-usuários em um ambiente inteligente. Este foi denominado TRUE, um acrônimo para
-\textit{Tracking and Recognizing User in the Environment}. O Sistema TRUE obtém
-informações do ambiente utilizando o sensor Kinect~\cite{kinect_microsoft} da
-Microsoft e disponibiliza seus resultados para as aplicações através do
-Middleware \textit{uOS}~\cite{fabriciobuzzeto2, fabriciobuzzeto}.
+%A inteligência esperada nestes ambientes é fruto de aplicações que processam
+%dados fornecidos pelos diversos dispositivos presentes, bem como coordenam suas
+%ações. Tendo em vista a dinamicidade do \textit{smart space}, uma vasta gama de 
+%informações podem ser ser necessárias para se construir o contexto. De maneira especial,
+%podemos considerar como informações fundamentais a identificação e localização do usuário. 
+%De posse destas é possível personalizar as ações a serem realizadas pelas aplicações %inteligentes bem como direcioná-las aos locais corretos de atuação.
+
+Diversas tecnologias tem sido utilizadas para determinação da identidade e localização
+de pessoas. Informações biométricas podem ser obtidas a partir do processamento de
+imagens, sons e impressões digitais, principalmente. Sistemas de localização podem
+basear-se em dispositivos de rádio frequência (RFID, \emph{bluetooth}, \emph{wifi}, \emph{zigbee}, etc.), acústicos,
+piezoelétricos (pressão) ou por processamento de imagens. Do ponto de vista do usuário, 
+um fator que fortalece a transparência é a não necessidade de realizar um processo específico para identificação, como fornecer a impressão digital ou focar uma câmera para processamento da íris, por
+exemplo. 
+
+Vários aspectos devem ser considerados na seleção das tecnologias para este propósito. Custo,
+confiabilidade, grau de transparência e disponibilidade de dispositivos para sua implementação são
+alguns aspectos principais. Em ambientes onde a aquisição de imagens é permitida, o seu processamento 
+pode ser utilizado tanto para a identificação quanto para a localização de pessoas. Por outro lado, o 
+surgimento de dispositivos poderosos e de baixo custo nesta área, como o Kinect 
+~\cite{kinect_microsoft}, torna-a uma alternativa interessante a ser considerada.
+ 
+Nesse contexto, este artigo apresenta um sistema de rastreamento, localização e 
+identificação de usuários baseado em processamento de imagens, integrado a um 
+\emph{middleware} que provê serviços para ambientes inteligentes. O sistema é 
+denominado TRUE (\textit{Tracking and Recognizing User in the 
+Environment}). TRUE obtém informações do ambiente utilizando o sensor Kinect
+~\cite{kinect_microsoft} da Microsoft e disponibiliza seus resultados para aplicações 
+sensíveis ao contexto através do \emph{Middleware} \textit{uOS}~\cite{fabriciobuzzeto2, fabriciobuzzeto}. 
+O uOS incorpora uma infraestrutura de suporte a aplicações sensíveis ao contexto
+baseada em ontologias ~\cite{Ozaki2011}. A integração do sistema TRUE ao uOS 
+viabiliza a construção de ontologias de localização, entre outras. 

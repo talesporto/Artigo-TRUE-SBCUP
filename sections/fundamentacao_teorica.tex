@@ -1,33 +1,33 @@
 \section{Fundamentação Teórica}
 
-Em ambientes inteligentes, as informações de contexto sobre os usuários como
-localização e identidade são de grande importância proporcionando uma maior
-acurácia nas tomadas de decisões. Informações de contexto como essas apresentam
-diversos desafios na sua obtenção tendo em vista que os usuários se movimentam e
-interagem entre si e com os dispositivos de forma dinâmica.
+%Em ambientes inteligentes, as informações de contexto sobre os usuários como
+%localização e identidade são de grande importância, proporcionando uma maior
+%acurácia nas tomadas de decisões. A sua obtenção apresenta
+%diversos desafios tendo em vista que os usuários se movimentam e
+%interagem entre si e com os dispositivos de forma dinâmica.
 
 % -----
 
-Dentre as diversas formas de se identificar um usuário, como pela íris e padrão
+Dentre as diversas formas de se identificar um usuário, incluindo reconhecimento da íris e  
 de voz, o reconhecimento por meio da face se destaca devido a sua aquisição ser
-realizada de maneira não intrusiva. Porém  o reconhecimento desta informação
+realizada de maneira não intrusiva. Porém,  o reconhecimento desta informação
 apresenta desafios devido a variações de iluminação, ângulos e poses,
-expressões, maquiagem, dentre outros. Neste cenário, o processo de
-reconhecimento facial pode ser divido em duas tarefas principais, a detecção das
+expressões e maquiagem, dentre outros. Neste cenário, o processo de
+reconhecimento facial pode ser divido em duas tarefas principais: a detecção das
 faces nas imagens e o reconhecimento destas.
 
-A detecção de faces e definida como o processo que determina a existência, ou
+A detecção de faces é definida como o processo que determina a existência, ou
 não, de uma ou mais faces em uma imagem. Atualmente existem diferentes métodos
 para realizar esta tarefa. Dentre eles se destaca o
-\textit{Viola-Jones}~\cite{edsonma, violajones}. que largamente utilizado. Tal
+\textit{Viola-Jones}~\cite{edsonma, violajones}, que é largamente utilizado. Tal
 método pode ser utilizado para construir uma abordagem de detecção facial de
 maneira rápida e eficaz utilizando apenas imagens em tons de cinza, o que o
-distingue dos outros métodos além do mesmo obter altas taxas de acerto.
+distingue dos outros métodos, além do mesmo obter altas taxas de acerto.
 
 Para o reconhecimento, busca-se padrões nas faces de forma que estes possam ser
-usados para a identificação do usuário. A técnica Eigenfaces~\cite{hewitt}
-consiste em extrair as principais características de uma face e com base nelas é
-determinado um valor correspondente, o \textit{eigenvalue}. Para tal é aplicada
+usados para a identificação do usuário. A técnica \emph{Eigenfaces}~\cite{hewitt}
+consiste em extrair as principais características de uma face e, com base nelas, é
+determinado um valor correspondente, o \textit{eigenvalue}. Para tanto é aplicada
 a técnica de PCA (\textit{Principal Component Analisys})~\cite{belhumeur} em
 imagens conhecidas. Com isto se obtém um valor de \textit{eigenvalue} médio bem
 como a distância de cada face para este valor. Assim quando se identifica uma
@@ -39,7 +39,7 @@ utilizada em diversas bibliotecas, como a OpenCV~\cite{opencv_library}.
 
 Para a localização do usuário podemos utilizar a técnica de imagens de
 profundidade onde a cada pixel da imagem é atrelado a um valor de distância
-relativa ao sensor. Dentre as técnicas conhecidas podemos também destacar a TOF
+relativa ao sensor. Dentre as técnicas conhecidas destacam-se TOF
 (\textit{Time of Flight})~\cite{jain, fall-detection} e luz
 estruturada~\cite{fall-detection}. Uma imagem de profundidade não pode ser
 obtida utilizando somente um sensor de vídeo. Porém, adicionando uma textura
@@ -52,21 +52,21 @@ bordas dos objetos e em posições muito longe do sensor.
 % -----
 
 O rastreamento pode ser definido como o problema de estimar a trajetória de uma
-entidade (objeto ou pessoa) em um plano de imagem à medida que se move na
+entidade (objeto ou pessoa) em um plano de imagem a medida que se move na
 cena. Em um ambiente inteligente, o rastreamento de pessoas é uma das principais
 ferramentas para detectar novos usuários e serve como base para que novas
 informações possam ser coletadas~\cite{yilmaz}. Basicamente, o processo de
 rastreamento pode ser dividido em duas etapas: detecção do objeto e rastreamento
 do objeto detectado. Existe um forte relacionamento entre as técnicas de
-rastreamento e a representação usada pelos mesmos. Dentre as representações
-conhecidas destacam-se a por pontos, por formas geométricas primitivas, por
-silhueta e contorno, por modelos de formas articuladas e por modelos de
+rastreamento e a representação usada pelas mesmas. Dentre as representações
+conhecidas destacam-se: por pontos; por formas geométricas primitivas; por
+silhueta e contorno; por modelos de formas articuladas e por modelos de
 esqueletos. A representação por silhueta e contorno é mais indicada para
 rastrear entidades complexas de forma não rígida. Ela é popular devido a sua
-simplicidade sendo muito utilizada no rastreamento de pessoas.
+simplicidade, sendo muito utilizada no rastreamento de pessoas.
 
-Todo método de rastreamento requer um mecanismo de detecção de entidades que
-pode ser realizada a cada \textit{frame} (quadro) obtido ou na primeira vez que
+Todo método de rastreamento requer um mecanismo de detecção que
+pode ser realizado a cada \textit{frame} (quadro) obtido ou na primeira vez que
 a entidade a ser rastreada entra no campo de visão. Dentre os métodos de
 rastreamento se destacam o detector de pontos, a subtração de fundo e
 a segmentação. A subtração de fundo é um método popular para segmentação de

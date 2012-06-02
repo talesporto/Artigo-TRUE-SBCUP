@@ -11,7 +11,7 @@ seguir.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.45]{img/modulo-integracao.png}
+		\includegraphics[scale=0.30]{img/modulo-integracao.png}
 	\end{center}
 	\caption{Interação entre o módulos do Sistema TRUE.}
 	\label{fig:relacao-modulos}
@@ -48,10 +48,14 @@ sucessivas deste usuário. De cada imagem é extraída a região correspondente a
 face e enviada ao Módulo de Reconhecimento requisitando identificação ao mesmo.
 O Módulo de Reconhecimento, por sua vez, realiza o reconhecimento facial e
 retorna ao Módulo de Rastreamento o nome do usuário e a confiança obtida. A cada
-500ms, o Módulo de Reconhecimento verifica se chegou algum resultado de
-identificação. Caso tenha chegado, o Módulo de Rastreamento decide qual identidade será atribuída ao respectivo usuário. Após o
-reconhecimento inicial, com o objetivo de melhorar a confiança, o módulo de rastreamento realiza uma nova tentativa de
-reconhecimento a cada 5 segundos.
+500 milissegundos, o Módulo de Rastreamento verifica se chegou algum resultado
+de identificação. Caso tenha chegado, o Módulo de Rastreamento decide qual
+identidade será atribuída ao respectivo usuário. Após o reconhecimento inicial,
+com o objetivo de melhorar a confiança, o módulo de rastreamento realiza uma
+nova tentativa de reconhecimento a cada 5 segundos. As taxas de 500
+milissegundos para a verificação da chegada de resposta e de 5 segundos para
+reverificar a identidade do usuário foram definidas arbitrariamente e se
+mostraram satisfatórias.
 
 Ao obter um resultado de reconhecimento para determinado usuário, o Módulo de
 Rastreamento deve computar qual identidade será atribuída ao mesmo. Para isso,
@@ -73,9 +77,7 @@ Seu funcionamento consiste nos seguintes passos:
 	 reconhecimento foi requisitado. 
 	\item Pré-processamento da imagem, ou seja, conversão da imagem em escala de
 	cinza.
-	\item  Detecção facial na imagem. Caso nenhuma face seja encontrada, retorna
-	 ``vazio''. Observa-se que no máximo uma face pode ser encontrada nesta
-	 imagem.
+	\item  Detecção facial na imagem. Caso nenhuma face seja encontrada interrompe o reconhecimento.
 	\item  Processamento da imagem, ou seja, uma nova imagem é criada recortando a
 	região da face encontrada. A imagem é, então, redimensionada e equalizada criando assim
 	um padrão de tamanho, brilho e contraste aumentando a acurácia do reconhecimento.

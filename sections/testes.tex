@@ -1,11 +1,20 @@
-\section{Testes}
+\section{Ambiente e Resultados Experimentais}
 \label{sec:testes}
 
 Com o intuito de verificar o desempenho do Sistema TRUE foram realizados uma
 série de testes abrangendo os dados de Rastreamento, Localização e
 Reconhecimento. Tais testes ocorreram no Laboratório LAICO (LAboratório de Sistemas Integrados e
 COncorrentes) do Departamento de Ciência da Computação da Universidade de
-Brasília.
+Brasília. A configuração do ambiente onde os mesmos foram realizados é
+melhor explicado pela Figura~\ref{fig:laico}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.20]{img/laico-teste-deteccao.png}
+	\end{center}
+	\caption{Ambiente de teste LAICO.}
+	\label{fig:laico}
+\end{figure}
 
 \subsection{Rastreamento}
 
@@ -57,22 +66,22 @@ um objeto (uma caixa de papelão) foi colocada a uma distância fixa de 3000
 milímetros do sensor e colocada em diferentes posições ao longo do eixo
 $\displaystyle x$ (0, $\displaystyle \pm330mm$, $\displaystyle \pm660mm$,
 $\displaystyle \pm990mm$). Foi observado que existe uma diferença constante de
-poucos centímetros ao longo de todo teste. É possível inferir então, que o
-Sistema TRUE consegue fazer estimativas das coordenadas no eixo $\displaystyle
-x$ com erro de poucos centímetros. Neste caso o menor e o maior erro obtido foi
-de 27,19mm e 79,29mm respectivamente. Chegamos então a um erro máximo de 10\%
-sobre os valores obtidos. Este é um valor mais significativo que o teste
-anterior mas, ainda assim, pode ser relevado na maior parte das aplicações.
+poucos centímetros ao longo de todo teste. É possível inferir então, a partir
+dos dados obtidos, que o Sistema TRUE consegue fazer estimativas das coordenadas
+no eixo $\displaystyle x$ com erro de poucos centímetros. Neste caso o menor e
+o maior erro obtido foi de 27,19mm e 79,29mm respectivamente. Chegamos então a
+um erro máximo de 10\% sobre os valores obtidos. Este é um valor mais
+significativo que o teste anterior mas, ainda assim, pode ser relevado na maior
+parte das aplicações.
 
 \subsection{Identificação}
 
 Para testar os resultados de identificação foram realizadas 2 iterações de
-testes, uma vez que a primeira proposta não apresentou resultados satisfatórios.
- Para análise foram
-utilizados três percentuais: verdadeiro positivo, quando o sistema identifica o
-usuário de maneira correta; verdadeiro negativo, quando o sistema identifica o
-usuário de maneira errada; e falso negativo, quando o sistema não identifica o
-usuário cadastrado.
+testes, uma vez que a primeira iteração não apresentou resultados satisfatórios.
+Para análise foram utilizados três percentuais: verdadeiro positivo, quando o
+sistema identifica o usuário de maneira correta; verdadeiro negativo, quando o
+sistema identifica o usuário de maneira errada; e falso negativo, quando o
+sistema não identifica o usuário cadastrado.
 
 No primeiro cenário de testes, os cadastros foram feitos utilizando
 10 imagens de faces de cada usuário: 6 imagens frontais, 2 imagens da

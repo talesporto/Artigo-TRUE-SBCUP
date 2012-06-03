@@ -41,13 +41,12 @@ Para a localização do usuário podemos utilizar a técnica de imagens de
 profundidade onde a cada pixel da imagem é atrelado a um valor de distância
 relativa ao sensor. Dentre as técnicas conhecidas destacam-se TOF
 (\textit{Time of Flight})~\cite{jain, fall-detection} e luz
-estruturada~\cite{fall-detection}. Uma imagem de profundidade não pode ser
-obtida utilizando somente um sensor de vídeo. Porém, adicionando uma textura
-artificial na cena, uma imagem de profundidade pode ser recuperada. Esse
-princípio consiste na projeção de pontos de luz infravermelhos na cena que são
-recuperados por uma câmera infravermelha que lê a textura. Trata-se de um método
-mais acessível que o TOF, porém pouco eficiente para estimar a distância nas
-bordas dos objetos e em posições muito longe do sensor.
+estruturada~\cite{fall-detection}. Uma imagem de profundidade pode ser
+obtida adicionando uma textura artificial na cena e a analisando posteriormente.
+Esse princípio consiste na projeção de pontos de luz infravermelhos na cena que
+são recuperados por uma câmera infravermelha que lê a textura. Trata-se de um
+método mais acessível que o TOF, porém pouco eficiente para estimar a distância
+nas bordas dos objetos e em posições muito longe do sensor.
 
 % -----
 

@@ -11,7 +11,7 @@ seguir.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.30]{img/modulo-integracao.png}
+		\includegraphics[scale=0.24]{img/modulo-integracao.png}
 	\end{center}
 	\caption{Interação entre o módulos do Sistema TRUE.}
 	\label{fig:relacao-modulos}
@@ -73,7 +73,7 @@ pode ser realizado sem intrusão nas atividades do usuário.
 Seu funcionamento consiste nos seguintes passos:
 
 \begin{enumerate}
-	\item Obtenção da imagem de entrada composta somente pelo usuário cujo
+	\item Recebimento da imagem composta somente pelo usuário cujo
 	 reconhecimento foi requisitado. 
 	\item Pré-processamento da imagem, ou seja, conversão da imagem em escala de
 	cinza.
@@ -82,8 +82,8 @@ Seu funcionamento consiste nos seguintes passos:
 	região da face encontrada. A imagem é, então, redimensionada e equalizada criando assim
 	um padrão de tamanho, brilho e contraste aumentando a acurácia do reconhecimento.
 	\item  Reconhecimento facial com a técnica \emph{Eigenfaces}. 
-	\item  Retorno do nome do usuário com a face ``mais parecida'' e a confiança do
-	 reconhecimento.
+	\item  Envio da resposta contendo o nome do usuário com a face ``mais
+	parecida'' e a confiança do reconhecimento.
 \end{enumerate}
 
 A detecção facial foi desenvolvida utilizando o método
@@ -124,17 +124,17 @@ cadastro de um novo usuário é composto pelas seguintes etapas:
 	\item Treinamento do sistema para reconhecer esse usuário.
 \end{enumerate}
 
-A última etapa do módulo de registro consiste no treinamento do sistema. O
-treinamento inicia-se liberando os atuais dados de treinamento. Então, um vetor
-de imagens é obtido lendo todas as imagens contidas no banco de faces. Através
-deste vetor, obtém-se a \textit{eigenface} média, os \textit{eigenfaces} e os
-\textit{eigenvalues}. Para cada usuário cadastrado no Sistema TRUE, suas imagens
-são projetadas no subespaço através do método PCA  que reduz suas
-dimensionalidades, e são calculadas suas distâncias em relação aos \emph{eigenfaces}
-obtendo um vetor de distâncias. Os \textit{eigenfaces}, os \textit{eigenvalues},
-a \textit{eigenface} média e os vetores de distâncias são armazenados e podem
-ser utilizados pelo Módulo de Reconhecimento. Após o treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja
-feito utilizando as novas imagens e informações obtidas com o treinamento.
+A última etapa do módulo de registro consiste no treinamento do sistema. Então,
+uma lista de imagens é obtida com todas as imagens contidas no banco de faces.
+Através desta lista, obtém-se a \textit{eigenface} média, os
+\textit{eigenfaces} e os \textit{eigenvalues}. Para cada usuário cadastrado no
+Sistema TRUE, suas imagens são projetadas no subespaço através do método PCA 
+que reduz suas dimensionalidades, e são calculadas suas distâncias em relação
+aos \emph{eigenfaces} obtendo uma lista de distâncias. Os \textit{eigenfaces},
+os \textit{eigenvalues}, a \textit{eigenface} média e as listas de distâncias
+são armazenados e podem ser utilizados pelo Módulo de Reconhecimento. Após o
+treinamento, o Sistema TRUE é reiniciado para que o reconhecimento seja feito
+utilizando as novas imagens e informações obtidas com o treinamento.
 
 \subsection{Módulo de Integração}
 

@@ -11,11 +11,14 @@
 
 \title{TRUE: um sistema para rastreamento, localização e identificação de usuários em ambientes inteligentes}
 
-\author{Tales M. A. Porto\inst{1}, Danilo Á. M. C. Ferreira\inst{1}, \\ Fabricio
-N. Buzeto\inst{1}, Carla D. Castanho\inst{1}, Ricardo P. Jacobi\inst{1}}
+\author{Tales M. A. Porto, Danilo A. M. C. Ferreira, \\ Fabricio
+N. Buzeto, Carla D. Castanho, Ricardo P. Jacobi}
 
 \address{
-Departamento de Computação -- Universidade Federal de Brasília (UnB)
+Departamento de Ciência da Computação -- Universidade de Brasília (UnB)\\
+Caixa Postal 4466 -70910-900 -Brasília-DF -Brasil \\
+emails: talesap@gmail.com, daniloavilaf@gmail.com, \\ 
+fabricio@intacto.com.br, \{carlacastanho,rjacobi\}@cic.unb.br
 }
 
 \begin{document}
@@ -24,11 +27,15 @@ Departamento de Computação -- Universidade Federal de Brasília (UnB)
 
 \begin{abstract}
 
-Ubiquitous computing, or ubicomp, proposes that the computer should be something
-invisible, helping and requiring minimal effort. For this invisibility to become
-real, context sensitive applications should act proactively in the environment.
-The TRUE System (Tracking and Recognizing Users in the Environment) turns
-identification, location and tracking of users  available to applications
+Context aware systems belongs to a class of computing systems that may dynamically
+adapt its behavior based on information sensed from the physical environment.
+To enable context awareness a variety of sensor devices that capture relevant data from 
+the environment is deployed and integrated into the smart space, encapsulated by a middleware.   
+%Ubiquitous computing, or ubicomp, proposes that the computer should be something
+%invisible, helping and requiring minimal effort. For this invisibility to become
+%real, context sensitive applications should act proactively in the environment.
+This paper presents the TRUE System (Tracking and Recognizing Users in the Environment),
+a system that provides identification, location and tracking of users to applications
 through the middleware uOS. We show here as the solution was constructed and
 their experimental results.
 
@@ -36,14 +43,19 @@ their experimental results.
 
 \begin{resumo}
 
-A Computação Ubíqua, ou ubicomp, propõe que a computação deveria ser algo
-invisível, nos servindo e exigindo o mínimo de esforço possível. Para que essa
-invisibilidade se torne real, aplicações sensíveis ao contexto devem atuar de
-forma proativa no ambiente. O Sistema TRUE (Tracking and Recognizing Users in
-the Environment) realiza a identificação, localização e rastreamento de usuários
-em um ambiente inteligente e disponibiliza essas informacões as aplicacões
-através do middleware uOS. Mostraremos aqui como a solução foi construída e seus
-resultados experimentais.
+%A Computação Ubíqua, ou ubicomp, propõe que a computação deveria ser algo
+%invisível, nos servindo e exigindo o mínimo de esforço possível. Para que essa
+%invisibilidade se torne real, aplicações sensíveis ao contexto devem atuar de
+%forma proativa no ambiente. 
+Sistemas sensíveis ao contexto pertencem a uma classe de sistemas computacionais
+que podem dinamicamente adaptar seu comportamento em função de informaçães
+provindas do ambiente físico. Para viabilizar a sensibilidade ao contexto uma variedade
+de sensores devem ser monitorados e integrados ao ambiente inteligente através de 
+uma abstração de software, usualmente implementada por um \emph{middleware}.
+O Sistema TRUE (\emph{Tracking and Recognizing Users in the Environment}) realiza a 
+identificação, localização e rastreamento de usuários em um ambiente inteligente e disponibiliza 
+essas informaçães às aplicaçães através do \emph{middleware} uOS. Este artigo apresenta 
+o desenvolvimento do sistema e alguns resultados experimentais.
 
 \end{resumo}
 
